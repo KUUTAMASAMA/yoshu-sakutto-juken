@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版 使ってみた例（数学）</title>
+<meta name="description" content="数学（対数の性質）の教科書1ページを、予習サクッと 受験版とChatGPTで予習し、復習クイズまでやってみた実例">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="demo/demo.css?v=1">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="subj-nav" aria-label="教科">
+    <a href="demo.html">日本史</a>
+    <a href="demo-en.html">英語</a>
+    <a href="demo-ge.html">現代文</a>
+    <a href="demo-ko.html">古文</a>
+    <a href="demo-ma.html" class="on">数学</a>
+  </nav>
+  <span class="tag">使ってみた例</span>
+  <h1>数学の予習と復習を、<br>実際にやってみた</h1>
+  <p>教科書の1ページを「予習サクッと 受験版」とChatGPTで予習して、復習クイズまで、順番に見せるよ。<br>アプリの画面は、<b>本物のアプリを実際に動かして撮ったもの</b>です。</p>
+  <div class="flow">
+    <span>🏠 <b>家で</b> 約10分</span>
+    <span>🚃 <b>電車で</b> 5分</span>
+    <span>⏰ <b>授業前</b> 5分</span>
+  </div>
+
+  <!-- 教科書 -->
+  <h2 style="margin-top:32px">今回予習する教科書のページ</h2>
+  <div class="textbook math">
+    <div class="lesson">第5章　指数関数と対数関数</div>
+    <h3>対数の性質</h3>
+    <p><span class="f">a</span> &gt; 0、<span class="f">a</span> ≠ 1、<span class="f">M</span> &gt; 0 のとき、<span class="f">a<sup>p</sup></span> = <span class="f">M</span> となる <span class="f">p</span> を、<span class="f">a</span> を底とする <span class="f">M</span> の対数といい、log<sub><span class="f">a</span></sub><span class="f">M</span> と表す。<span class="f">M</span> を真数という。</p>
+    <div class="def">
+      <span class="t">対数の性質</span>
+      <span class="f">M</span> &gt; 0、<span class="f">N</span> &gt; 0 で、<span class="f">k</span> が実数のとき<br>
+      ① log<sub><span class="f">a</span></sub><span class="f">MN</span> = log<sub><span class="f">a</span></sub><span class="f">M</span> + log<sub><span class="f">a</span></sub><span class="f">N</span><br>
+      ② log<sub><span class="f">a</span></sub>(<span class="f">M</span>/<span class="f">N</span>) = log<sub><span class="f">a</span></sub><span class="f">M</span> − log<sub><span class="f">a</span></sub><span class="f">N</span><br>
+      ③ log<sub><span class="f">a</span></sub><span class="f">M<sup>k</sup></span> = <span class="f">k</span> log<sub><span class="f">a</span></sub><span class="f">M</span>
+    </div>
+    <div class="rei">
+      <span class="t">例題 4</span>
+      次の式を計算せよ。　log<sub>2</sub>12 − log<sub>2</sub>3
+    </div>
+    <div class="note">※ このデモのために作ったページです（本物の教科書ではありません）</div>
+  </div>
+
+  <!-- ===== 家で ===== -->
+  <div class="scene-head"><span class="icon">🏠</span><div><b>家で予習する</b><span>約10分</span></div></div>
+
+  <div class="step" data-no="1">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>「今日やること」で数学を選んで「はじめる」</h2>
+    <p class="sub" style="margin:0">タップするとリストに入る。「はじめる」でタイマーが動いて、やることが順番に出てくる。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/ma-01-plan.jpg"><img src="demo/ma-01-plan.jpg" alt="今日やることの画面。数学をタップしてリストに追加したところ" width="600" height="1200" loading="lazy"></a></div><figcaption>① 数学をタップ →「はじめる」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ma-02-steps.jpg"><img src="demo/ma-02-steps.jpg" alt="数学の予習の手順が表示された画面" width="600" height="1200" loading="lazy"></a></div><figcaption>② 手順が出る</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ／画像を押すと大きく見られるよ</div>
+  </div>
+
+  <div class="step" data-no="2">
+    <div class="where chat">ChatGPT</div>
+    <h2>「予習」で、教科書の写真を送る</h2>
+    <p class="sub" style="margin:0">「予習」の中で新しいチャット →「数学」と打つ →「＋」→「カメラ」で例題のページを撮る → 送信。</p>
+    <div class="gpt">
+      <div class="bar">予習 <small>›　新しいチャット</small></div>
+      <div class="body">
+        <div class="user"><span class="photo-thumb"><span>📷 教科書の写真</span></span>数学</div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの画面のイメージ</div>
+    <div class="point">数学は式が多いので、<b>写真で送るのがおすすめ</b>。文字読み取りだと log や分数がくずれやすいよ。</div>
+  </div>
+
+  <div class="step" data-no="3">
+    <div class="where chat">ChatGPT</div>
+    <h2>ヒントが返ってくる</h2>
+    <p class="sub" style="margin:0">いきなり答えは出ない。習うことの説明と、例題の<b>1段目のヒント</b>だけ。</p>
+    <div class="gpt">
+      <div class="body">
+        <div class="ai">
+          <h4>■ このページで習うこと（3行で）</h4>
+          <ul>
+            <li>logₐM は「a を何乗すると M になるか」を表す数。</li>
+            <li>かけ算は足し算に、わり算は引き算に、k乗は k 倍に変えられる（対数の性質）。</li>
+            <li>性質を使って、log をまとめてから計算する。</li>
+          </ul>
+          <h4>■ 例題のヒント（1段目）</h4>
+          <p style="margin:0">引き算の形になっているね。上の3つの性質のうち、どれが使えるかな？<br><span class="hint">（わかったら「次」と送ってね）</span></p>
+          <h4>■ 必要な中学の内容</h4>
+          <p style="margin:0">累乗（2³ = 8 のような計算）。「2を何回かけると4になる？」がすぐ出てくると、対数がラクになるよ。</p>
+          <div class="fmt">
+            <b>【まとめ】</b><br>
+            ・logₐM は「a を何乗すると M になるか」<br>
+            ・かけ算→足し算、わり算→引き算、k乗→k倍（対数の性質）<br>
+            ・性質を使って log を1つにまとめてから計算する<br>
+            <b>【カード】</b><br>
+            logₐM の意味｜a を何乗すると M になるかを表す数<br>
+            logₐMN｜logₐM + logₐN<br>
+            <span class="more">（8個まで続く）</span>
+          </div>
+          <div class="tools" aria-label="返事の下のボタン">
+            <span class="copy" aria-label="コピー"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例（実際の返事は毎回少しずつちがうよ）</div>
+    <div class="point">最後の<b>【まとめ】【カード】</b>が、アプリに保存される部分。公式が「カード」になるよ。</div>
+  </div>
+
+  <div class="step" data-no="4">
+    <div class="where chat">ChatGPT</div>
+    <h2>「次」で1段ずつ進めて、最後に「答え合わせ」</h2>
+    <div class="gpt">
+      <div class="body">
+        <div class="user">次</div>
+        <div class="ai">
+          <h4>■ ヒント（2段目）</h4>
+          <p style="margin:0">性質②を使うと、log₂12 − log₂3 = log₂(12 ÷ 3) = log₂4。<br>では、2を何乗すると4になるかな？</p>
+        </div>
+        <div class="user">答え合わせ</div>
+        <div class="ai">
+          <h4>■ 解き方</h4>
+          <p style="margin:0">log₂12 − log₂3 = log₂(12/3) = log₂4 = <b>2</b><br>（2² = 4 だから）</p>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例</div>
+    <div class="point warm"><b>自分で解けたところまで進めてから</b>「答え合わせ」。つまったところが、授業でよく聞くポイントだよ。</div>
+  </div>
+
+  <div class="step" data-no="5">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>最初の返事をアプリに貼って保存</h2>
+    <p class="sub" style="margin:0">ステップ3の返事の<b>コピーボタン</b>を押す → アプリに戻って貼る →「カードとまとめを保存」→「記録する」。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/ma-03-paste.jpg"><img src="demo/ma-03-paste.jpg" alt="ChatGPTの返事を貼りつけた画面" width="600" height="1200" loading="lazy"></a></div><figcaption>① 貼りつけて「保存」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ma-04-saved.jpg"><img src="demo/ma-04-saved.jpg" alt="新しいカード8枚、まとめ1件を保存したと表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② カード8枚とまとめが保存された</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ma-05-done.jpg"><img src="demo/ma-05-done.jpg" alt="今日やることの数学に✓がつき、復習クイズ8枚が表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>③「記録する」で ✓</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ（3枚）</div>
+  </div>
+
+  <div class="total">この教科書1ページの予習にかかった時間<br><b>約10分</b><br><span class="sub">1段ずつヒントをもらえるから、つまっても止まらない</span></div>
+
+  <!-- ===== 電車で ===== -->
+  <div class="scene-head"><span class="icon">🚃</span><div><b>電車で復習クイズ</b><span>5分</span></div></div>
+  <div class="step" data-no="6">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>公式と用語をクイズで確認</h2>
+    <p class="sub" style="margin:0">頭の中で答えてから「答えを見る」→「覚えた ○」か「まだ ×」。公式がすぐ出てくると、定期テストの計算が速くなるよ。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/ma-07-quiz-q.jpg"><img src="demo/ma-07-quiz-q.jpg" alt="クイズの問題。logₐM の意味 と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>① 意味を思い出す</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ma-08-quiz-a.jpg"><img src="demo/ma-08-quiz-a.jpg" alt="クイズの答え。a を何乗すると M になるかを表す数 と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② 答えを見て○か×</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ</div>
+  </div>
+
+  <!-- ===== 授業前 ===== -->
+  <div class="scene-head"><span class="icon">⏰</span><div><b>授業の前にまとめ</b><span>5分</span></div></div>
+  <div class="step" data-no="7">
+    <div class="where app">予習サクッと 受験版 ›「📝まとめ」</div>
+    <h2>ポイント3つを見返す</h2>
+    <p class="sub" style="margin:0">「かけ算→足し算、わり算→引き算」を覚えておけば、授業の例題もすぐわかる。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/ma-11-notes.jpg"><img src="demo/ma-11-notes.jpg" alt="授業前のまとめ画面。数学のポイントが3つ並んでいる" width="600" height="1200" loading="lazy"></a></div><figcaption>数学のまとめ</figcaption></figure>
+    </div>
+  </div>
+
+  <div style="display:grid;gap:10px;margin-top:32px">
+    <a class="btn ghost" href="demo.html">日本史の例にもどる</a>
+    <a class="btn" href="./">アプリを開く</a>
+    <a class="btn ghost" href="guide.html#junbi">使い方ガイド（最初の準備はこちら）</a>
+  </div>
+  <footer>まずは次の数学の授業で、1回だけ試してみよう。</footer>
+</div>
+</body>
+</html>

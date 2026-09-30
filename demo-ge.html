@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版 使ってみた例（現代文）</title>
+<meta name="description" content="現代文（評論）の教科書1ページを、予習サクッと 受験版とChatGPTで予習し、復習クイズまでやってみた実例">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="demo/demo.css?v=1">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="subj-nav" aria-label="教科">
+    <a href="demo.html">日本史</a>
+    <a href="demo-en.html">英語</a>
+    <a href="demo-ge.html" class="on">現代文</a>
+    <a href="demo-ko.html">古文</a>
+    <a href="demo-ma.html">数学</a>
+  </nav>
+  <span class="tag">使ってみた例</span>
+  <h1>現代文の予習と復習を、<br>実際にやってみた</h1>
+  <p>教科書の1ページを「予習サクッと 受験版」とChatGPTで予習して、復習クイズまで、順番に見せるよ。<br>アプリの画面は、<b>本物のアプリを実際に動かして撮ったもの</b>です。</p>
+  <div class="flow">
+    <span>🏠 <b>家で</b> 約10分</span>
+    <span>🚃 <b>電車で</b> 5分</span>
+    <span>⏰ <b>授業前</b> 5分</span>
+  </div>
+
+  <!-- 教科書 -->
+  <h2 style="margin-top:32px">今回予習する教科書のページ</h2>
+  <div class="textbook tate">
+    <div class="tate-body" tabindex="0" aria-label="縦書きの本文">
+      <h3>忘れるという力</h3>
+      <div class="by">（デモ用の文章）</div>
+      <p>私たちは、忘れることを悪いことだと考えがちである。覚えたはずの英単語が出てこない、昨日の授業の内容があいまいになる。そのたびに、自分の記憶力の弱さを責めてしまう。</p>
+      <p>しかし、忘れることは、脳が正しく働いている証拠でもある。もし見聞きしたことをすべて覚えていたら、私たちは情報の洪水におぼれ、何が大切なのかを判断できなくなるだろう。忘却とは、膨大な情報の中から必要なものを選び取るための、いわば取捨選択の仕組みなのだ。</p>
+      <p>逆説的に聞こえるかもしれないが、何度も思い出そうとした記憶ほど、脳は「これは必要だ」と判断して強く残す。つまり、忘れかけたときこそが、記憶を確かなものにする好機なのである。忘れることを恐れる必要はない。大切なのは、忘れかけたものを、もう一度思い出そうとすることである。</p>
+    </div>
+    <div class="scroll-hint">縦書きなので、左へスクロールすると続きが読めるよ</div>
+    <div class="note">※ このデモのために作った文章です（本物の教科書ではありません）</div>
+  </div>
+
+  <!-- ===== 家で ===== -->
+  <div class="scene-head"><span class="icon">🏠</span><div><b>家で予習する</b><span>約10分</span></div></div>
+
+  <div class="step" data-no="1">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>「今日やること」で現代文を選んで「はじめる」</h2>
+    <p class="sub" style="margin:0">タップするとリストに入る。「はじめる」でタイマーが動いて、やることが順番に出てくる。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/ge-01-plan.jpg"><img src="demo/ge-01-plan.jpg" alt="今日やることの画面。現代文をタップしてリストに追加したところ" width="600" height="1200" loading="lazy"></a></div><figcaption>① 現代文をタップ →「はじめる」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ge-02-steps.jpg"><img src="demo/ge-02-steps.jpg" alt="現代文の予習の手順が表示された画面" width="600" height="1200" loading="lazy"></a></div><figcaption>② 手順が出る</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ／画像を押すと大きく見られるよ</div>
+  </div>
+
+  <div class="step" data-no="2">
+    <div class="where chat">ChatGPT</div>
+    <h2>「予習」で、教科書の写真を送る</h2>
+    <p class="sub" style="margin:0">「予習」の中で新しいチャット →「現代文」と打つ →「＋」→「カメラ」で本文のページを撮る → 送信。</p>
+    <div class="gpt">
+      <div class="bar">予習 <small>›　新しいチャット</small></div>
+      <div class="body">
+        <div class="user"><span class="photo-thumb tate"><span>📷 教科書の写真</span></span>現代文</div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの画面のイメージ</div>
+    <div class="point">本文が2ページにまたがるときは、<b>1枚にまとめて撮る</b>と写真の回数を節約できるよ。</div>
+  </div>
+
+  <div class="step" data-no="3">
+    <div class="where chat">ChatGPT</div>
+    <h2>ヒントが返ってくる</h2>
+    <p class="sub" style="margin:0">むずかしい言葉の説明と、<b>筆者の言いたいことを見つけるヒント</b>。答えはまだ出ない。</p>
+    <div class="gpt">
+      <div class="body">
+        <div class="ai">
+          <h4>■ むずかしい言葉</h4>
+          <ul>
+            <li>忘却：忘れること</li>
+            <li>取捨選択：必要なものを取り、不要なものを捨てること</li>
+            <li>逆説的：一見むじゅんしているようで、実は真理をふくんでいるようす</li>
+          </ul>
+          <div class="more">（5個まで続く）</div>
+          <h4>■ 筆者の言いたいことを見つけるヒント</h4>
+          <ul>
+            <li>第1段落は「世間でよくある考え」。第2段落の「しかし」から筆者の意見が始まるよ。</li>
+            <li>筆者は「忘れること」を、何のための「仕組み」だと言っているかな？</li>
+            <li>最後の段落の「つまり」のあとに、いちばん言いたいことがあるよ。</li>
+          </ul>
+          <h4>■ 授業で聞かれそうな質問</h4>
+          <p style="margin:0">Q1. 筆者は、忘却をどのような「仕組み」だと述べているか。<br>Q2. 「逆説的に聞こえるかもしれない」とあるが、何が逆説的なのか。<br>Q3. 筆者が「大切なのは」と言っていることは何か。</p>
+          <div class="fmt">
+            <b>【まとめ】</b><br>
+            ・忘れることは悪いことではなく、脳が正しく働いている証拠<br>
+            ・忘却は、膨大な情報から必要なものを選ぶ「取捨選択」の仕組み<br>
+            ・忘れかけたときに思い出そうとすることで、記憶は確かになる<br>
+            <b>【カード】</b><br>
+            忘却｜忘れること<br>
+            膨大｜非常に多いこと<br>
+            <span class="more">（8個まで続く）</span>
+          </div>
+          <div class="tools" aria-label="返事の下のボタン">
+            <span class="copy" aria-label="コピー"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例（実際の返事は毎回少しずつちがうよ）</div>
+    <div class="point">最後の<b>【まとめ】【カード】</b>が、アプリに保存される部分。評論によく出る言葉がカードになるよ。</div>
+  </div>
+
+  <div class="step" data-no="4">
+    <div class="where chat">ChatGPT</div>
+    <h2>自分の考えを1行書いてから「答え合わせ」</h2>
+    <div class="gpt">
+      <div class="body">
+        <div class="user">筆者の言いたいこと：忘れかけたときに思い出そうとすることが、記憶を強くする。
+答え合わせ</div>
+        <div class="ai">
+          <h4>■ 段落ごとの要約</h4>
+          <ol>
+            <li>私たちは、忘れることを悪いことだと考えがちだ。</li>
+            <li>しかし忘却は、膨大な情報から必要なものを選ぶ取捨選択の仕組みだ。</li>
+            <li>何度も思い出そうとした記憶ほど強く残る。忘れかけたときこそ、記憶を確かにする好機だ。</li>
+          </ol>
+          <h4>■ 質問の答え</h4>
+          <p style="margin:0">Q1. 膨大な情報の中から、必要なものを選び取るための取捨選択の仕組み。 …</p>
+          <p style="margin:8px 0 0">あなたの1行は、第3段落の要点をしっかりつかめているよ！ ちなみに、アプリの復習クイズも、まさにこの考え方でできているよ。</p>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例</div>
+    <div class="point warm">自分の1行を先に書くのがコツ。評論は<b>「しかし」「つまり」のあと</b>に筆者の主張が来ることが多いよ。入試の現代文でも使える読み方。</div>
+  </div>
+
+  <div class="step" data-no="5">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>最初の返事をアプリに貼って保存</h2>
+    <p class="sub" style="margin:0">ステップ3の返事の<b>コピーボタン</b>を押す → アプリに戻って貼る →「カードとまとめを保存」→「記録する」。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/ge-03-paste.jpg"><img src="demo/ge-03-paste.jpg" alt="ChatGPTの返事を貼りつけた画面" width="600" height="1200" loading="lazy"></a></div><figcaption>① 貼りつけて「保存」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ge-04-saved.jpg"><img src="demo/ge-04-saved.jpg" alt="新しいカード8枚、まとめ1件を保存したと表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② カード8枚とまとめが保存された</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ge-05-done.jpg"><img src="demo/ge-05-done.jpg" alt="今日やることの現代文に✓がつき、復習クイズ8枚が表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>③「記録する」で ✓</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ（3枚）</div>
+  </div>
+
+  <div class="total">この教科書1ページの予習にかかった時間<br><b>約10分</b><br><span class="sub">言葉を辞書で調べる時間が、ほぼゼロになるよ</span></div>
+
+  <!-- ===== 電車で ===== -->
+  <div class="scene-head"><span class="icon">🚃</span><div><b>電車で復習クイズ</b><span>5分</span></div></div>
+  <div class="step" data-no="6">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>評論の言葉をクイズで覚える</h2>
+    <p class="sub" style="margin:0">頭の中で答えてから「答えを見る」→「覚えた ○」か「まだ ×」。「取捨選択」「逆説」のような言葉は、入試の評論にもよく出るよ。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/ge-07-quiz-q.jpg"><img src="demo/ge-07-quiz-q.jpg" alt="クイズの問題。忘却 と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>① 意味を思い出す</figcaption></figure>
+      <figure><div class="phone"><a href="demo/ge-08-quiz-a.jpg"><img src="demo/ge-08-quiz-a.jpg" alt="クイズの答え。忘れること と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② 答えを見て○か×</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ</div>
+  </div>
+
+  <!-- ===== 授業前 ===== -->
+  <div class="scene-head"><span class="icon">⏰</span><div><b>授業の前にまとめ</b><span>5分</span></div></div>
+  <div class="step" data-no="7">
+    <div class="where app">予習サクッと 受験版 ›「📝まとめ」</div>
+    <h2>ポイント3つを見返す</h2>
+    <p class="sub" style="margin:0">筆者の主張が3行でわかる。授業の話がスッと入ってくるよ。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/ge-11-notes.jpg"><img src="demo/ge-11-notes.jpg" alt="授業前のまとめ画面。現代文のポイントが3つ並んでいる" width="600" height="1200" loading="lazy"></a></div><figcaption>現代文のまとめ</figcaption></figure>
+    </div>
+  </div>
+
+  <div style="display:grid;gap:10px;margin-top:32px">
+    <a class="btn ghost" href="demo-ko.html">次は古文の例を見る →</a>
+    <a class="btn" href="./">アプリを開く</a>
+    <a class="btn ghost" href="guide.html#junbi">使い方ガイド（最初の準備はこちら）</a>
+  </div>
+  <footer>まずは次の現代文の授業で、1回だけ試してみよう。</footer>
+</div>
+</body>
+</html>
