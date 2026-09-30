@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版 使い方</title>
+<meta name="description" content="予習サクッと 受験版の使い方ガイド。準備、毎日の予習、日本史の流れ、復習クイズ、聞き流し、受験までの見通し">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #f5f5f2;
+    --card: #ffffff;
+    --text: #1f2328;
+    --sub: #62676d;
+    --line: #e2e2dc;
+    --accent: #3a5a8c;
+    --on-accent: #ffffff;
+    --accent-soft: #e5ebf5;
+    --warm: #c0643c;
+    --warm-soft: #f8e8df;
+    --good: #2f7a5c;
+    --chat-ai: #eef1f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181c;
+      --card: #21252b;
+      --text: #eceae6;
+      --sub: #a3a7ad;
+      --line: #343941;
+      --accent: #92b1e3;
+      --on-accent: #111a2a;
+      --accent-soft: #232d3d;
+      --warm: #e38c64;
+      --warm-soft: #3a2a22;
+      --good: #7cc7a4;
+      --chat-ai: #2a2f36;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 12px; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+    line-height: 1.75;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 20px 16px calc(48px + env(safe-area-inset-bottom)); }
+  h1 { font-size: 1.55rem; line-height: 1.4; margin: 12px 0 8px; }
+  h2 { font-size: 1.2rem; margin: 48px 0 12px; display: flex; align-items: center; gap: 10px; }
+  h2 .num {
+    display: inline-grid; place-items: center; flex: none;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: var(--on-accent); font-size: .9rem;
+  }
+  h3 { font-size: 1rem; margin: 0 0 4px; }
+  p { margin: 0 0 12px; }
+  .sub { color: var(--sub); font-size: .9rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; margin-bottom: 12px; }
+  .tag {
+    display: inline-block; background: var(--accent-soft); color: var(--accent);
+    font-size: .78rem; font-weight: 700; padding: 1px 10px; border-radius: 99px;
+  }
+  a { color: var(--accent); }
+  .btn {
+    display: block; text-align: center; text-decoration: none;
+    padding: 14px; border-radius: 14px; font-weight: 700;
+    background: var(--accent); color: var(--on-accent);
+  }
+
+  /* もくじ */
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+  .toc a {
+    text-decoration: none; font-size: .85rem; font-weight: 600;
+    background: var(--card); border: 1px solid var(--line); color: var(--text);
+    padding: 4px 12px; border-radius: 99px;
+  }
+
+  /* 場面 */
+  .scene { display: flex; gap: 14px; align-items: flex-start; }
+  .scene + .scene { margin-top: 14px; }
+  .scene .icon {
+    flex: none; width: 46px; height: 46px; border-radius: 14px;
+    background: var(--accent-soft); display: grid; place-items: center; font-size: 1.4rem;
+  }
+  .scene .time { color: var(--accent); font-weight: 700; font-size: .82rem; }
+
+  /* ステップ */
+  ol.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; }
+  ol.steps > li { position: relative; padding-left: 40px; counter-increment: s; }
+  ol.steps > li + li { margin-top: 16px; }
+  ol.steps > li::before {
+    content: counter(s);
+    position: absolute; left: 0; top: 0;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center; font-weight: 700; font-size: .85rem;
+  }
+  ol.steps .sub { margin: 2px 0 0; }
+
+  /* 画面の見本 */
+  .mock { border: 1px solid var(--line); border-radius: 14px; background: var(--bg); padding: 10px; margin-top: 8px; font-size: .85rem; }
+  .mock .mbtn {
+    display: inline-block; background: var(--accent); color: var(--on-accent); font-weight: 700;
+    padding: 6px 12px; border-radius: 10px; font-size: .82rem;
+  }
+  .mock .mbtn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .mock .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .mock .opts span {
+    padding: 4px 12px; border-radius: 99px; font-weight: 600; font-size: .82rem;
+    background: var(--card); border: 1.5px solid var(--line);
+  }
+  .mock .opts span.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .mock .todo { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+  .mock .todo + .todo { border-top: 1px solid var(--line); }
+  .mock .todo .chk {
+    width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--accent);
+    display: grid; place-items: center; font-size: .7rem; font-weight: 800; color: var(--on-accent); flex: none;
+  }
+  .mock .todo.done .chk { background: var(--good); border-color: var(--good); }
+  .mock .todo.done .w { color: var(--sub); }
+  .mock .todo .w { flex: 1; font-weight: 700; }
+
+  /* チャット */
+  .chat { display: grid; gap: 8px; }
+  .bubble { padding: 10px 12px; border-radius: 14px; font-size: .88rem; max-width: 92%; }
+  .bubble.me { background: var(--accent); color: var(--on-accent); justify-self: end; border-bottom-right-radius: 4px; white-space: pre-wrap; }
+  .bubble.ai { background: var(--chat-ai); justify-self: start; border-bottom-left-radius: 4px; }
+  .flow3 { display: grid; gap: 4px; margin: 4px 0; }
+  .flow3 div { background: var(--card); border-radius: 10px; padding: 5px 10px; }
+  .flow3 small { color: var(--warm); font-weight: 800; margin-right: 6px; }
+  .fmt { background: var(--card); border-radius: 10px; padding: 8px 10px; margin-top: 8px; font-size: .84rem; }
+
+  /* 復習のタイミング */
+  .timeline { display: flex; align-items: flex-start; margin: 14px 0 6px; }
+  .timeline .pt { flex: 1; text-align: center; position: relative; font-size: .72rem; }
+  .timeline .pt::before {
+    content: ""; position: absolute; top: 11px; left: -50%; width: 100%;
+    border-top: 2px dashed var(--line); z-index: 0;
+  }
+  .timeline .pt:first-child::before { display: none; }
+  .timeline .dot {
+    position: relative; z-index: 1; margin: 0 auto 4px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: var(--on-accent);
+    display: grid; place-items: center; font-size: .68rem; font-weight: 700;
+  }
+  .timeline .pt:first-child .dot { background: var(--warm); }
+  .timeline .pt span { display: block; line-height: 1.35; }
+
+  /* 表 */
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { border-bottom: 1px solid var(--line); padding: 8px 4px; text-align: left; vertical-align: top; }
+  th { color: var(--sub); font-weight: 600; font-size: .82rem; }
+  td.word { font-weight: 700; white-space: nowrap; color: var(--accent); }
+
+  /* 受験までの見通し */
+  .road { position: relative; padding-left: 22px; }
+  .road::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; border-left: 2px solid var(--line); }
+  .road .st { position: relative; }
+  .road .st + .st { margin-top: 14px; }
+  .road .st::before {
+    content: ""; position: absolute; left: -21px; top: 7px;
+    width: 12px; height: 12px; border-radius: 50%; background: var(--line);
+  }
+  .road .st.now::before { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .road .when { font-size: .8rem; font-weight: 700; color: var(--sub); }
+  .road .st.now .when { color: var(--accent); }
+
+  .point { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 10px 12px; border-radius: 8px; font-size: .92rem; margin-top: 10px; }
+  .point.warm { border-color: var(--warm); background: var(--warm-soft); }
+
+  /* Q&A */
+  details.qa { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; }
+  details.qa summary {
+    padding: 14px 16px; font-weight: 700; cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; gap: 8px;
+  }
+  details.qa summary::-webkit-details-marker { display: none; }
+  details.qa summary::after { content: "＋"; color: var(--accent); flex: none; }
+  details.qa[open] summary::after { content: "－"; }
+  details.qa .ans { padding: 0 16px 14px; font-size: .92rem; }
+  details.qa .ans p:last-child { margin-bottom: 0; }
+
+  .rules li { margin-bottom: 8px; }
+  .copybtn {
+    display: block; width: 100%; margin-top: 10px;
+    padding: 12px; border-radius: 12px; border: 1.5px solid var(--accent);
+    background: transparent; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer;
+  }
+  .rules-box { margin-top: 8px; }
+  .rules-box summary { color: var(--accent); font-size: .88rem; cursor: pointer; }
+  pre.prompt {
+    white-space: pre-wrap; overflow-wrap: anywhere;
+    font-family: inherit; font-size: .8rem;
+    background: var(--bg); border: 1px dashed var(--line);
+    border-radius: 12px; padding: 10px; margin: 8px 0 0;
+  }
+  .toast {
+    position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%);
+    background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 99px;
+    font-size: .9rem; opacity: 0; pointer-events: none; transition: opacity .2s; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; }
+  footer { margin-top: 40px; text-align: center; color: var(--sub); font-size: .85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="tag">使い方ガイド</span>
+  <h1>予習サクッと 受験版<br>の使い方</h1>
+  <p>予習を<b>1日30分</b>にして、覚えたことを<b>忘れる前に復習</b>するアプリです。<br>5分で読めます。わからなくなったら、いつでもここに戻ってきてね。</p>
+  <a class="btn" href="./">アプリを開く</a>
+
+  <nav class="toc" aria-label="もくじ">
+    <a href="#junbi">① 最初の準備</a>
+    <a href="#mainichi">② 毎日の予習</a>
+    <a href="#nihonshi">③ 日本史</a>
+    <a href="#fukushu">④ 復習クイズ・聞き流し</a>
+    <a href="#aikotoba">⑤ 合言葉と便利ワザ</a>
+    <a href="#juken">⑥ 記録と受験</a>
+    <a href="#komatta">⑦ 困ったとき</a>
+    <a href="#rule">⑧ ルール</a>
+  </nav>
+
+  <div class="card" style="margin-top:20px">
+    <h3>使う場面は4つ</h3>
+    <div class="scene" style="margin-top:10px">
+      <div class="icon">🏠</div>
+      <div><div class="time">家で・1教科10分</div>教科書をChatGPTに送って、下調べしてもらう</div>
+    </div>
+    <div class="scene">
+      <div class="icon">🚃</div>
+      <div><div class="time">電車で・5〜10分</div>復習クイズ（耳で聞き流しもできる）</div>
+    </div>
+    <div class="scene">
+      <div class="icon">⏰</div>
+      <div><div class="time">授業前・5分</div>まとめを見返す</div>
+    </div>
+    <div class="scene">
+      <div class="icon">📅</div>
+      <div><div class="time">週末・30分</div>先生役になって、習ったことを説明する</div>
+    </div>
+  </div>
+
+  <!-- ① 準備 -->
+  <h2 id="junbi"><span class="num">1</span>最初の準備（1回だけ）</h2>
+  <div class="card">
+    <ol class="steps">
+      <li>
+        <h3>おうちの人にOKをもらう</h3>
+        <p class="sub">「勉強にAI（ChatGPT）を使いたい」と伝えよう。18歳未満は保護者のOKが必要です。</p>
+      </li>
+      <li>
+        <h3>ChatGPT にログインしておく</h3>
+        <p class="sub">App Store で「ChatGPT」（会社名 OpenAI）。無料のままでOK。有料プランは選ばなくて大丈夫。</p>
+      </li>
+      <li>
+        <h3>ChatGPTにプロジェクト「予習」を作る</h3>
+        <p class="sub">ChatGPTの左上のメニュー → 「プロジェクト」の<b>「新しいプロジェクト」</b>→ 名前に「予習」と入れて作成。</p>
+        <div class="point" style="margin-top:8px">プロジェクトは「予習専用の部屋」。この部屋の中のチャットは、次に覚えさせるルールを毎回守ってくれるよ。</div>
+      </li>
+      <li>
+        <h3>「予習のルール」を覚えさせる</h3>
+        <p class="sub">下のボタンでルールをコピー → プロジェクト「予習」を開く → 右上の「…」→ <b>プロジェクトの設定</b> →<b>「指示」</b>の欄に貼って保存。</p>
+        <button class="copybtn" id="copy-rules">予習のルールをコピー</button>
+        <details class="rules-box">
+          <summary>ルールの中身を見る</summary>
+          <pre class="prompt" id="rules"></pre>
+        </details>
+        <p class="sub" style="margin-top:8px">ボタンの名前が少しちがうこともあるよ。どうしても見つからなければ、アプリの予習画面にある「プロジェクトを作っていないときは」のお願い文を使えばOK。</p>
+      </li>
+      <li>
+        <h3>このアプリをホーム画面に置く</h3>
+        <p class="sub">Safari でアプリを開く →下の「共有」ボタン（□に↑のマーク）→「ホーム画面に追加」→「追加」。青い「予」のアイコンができるよ。</p>
+        <div class="point" style="margin-top:8px">置いたあとは、<b>いつもホーム画面のアイコンから開く</b>こと。Safariから開くのとは記録が別々になっちゃうよ。</div>
+      </li>
+      <li>
+        <h3>アプリの「もう準備できた」を押す</h3>
+        <p class="sub">予習画面の上に出ている「はじめに」のお知らせが消えるよ。</p>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ② 毎日の予習 -->
+  <h2 id="mainichi"><span class="num">2</span>毎日の予習（1教科10分）</h2>
+  <div class="card">
+    <ol class="steps">
+      <li>
+        <h3>「今日やること」で、予習する教科をタップ</h3>
+        <p class="sub">明日の授業で予習がいる教科を選ぶと、上にリストができるよ。</p>
+        <div class="mock"><div class="opts"><span class="on">日本史</span><span class="on">英語</span><span>現代文</span><span>古文・漢文</span><span>数学</span><span>理科</span></div></div>
+      </li>
+      <li>
+        <h3>リストの「はじめる」を押す</h3>
+        <p class="sub">タイマーが動いて、やることが順番に出てくる。</p>
+      </li>
+      <li>
+        <h3>教科書をChatGPTに送る</h3>
+        <p class="sub"><b>日本史・英語</b>：カメラを本文に向ける → 右下の<b>文字読み取りマーク</b> →「すべてを選択」→「コピー」。ChatGPTの「予習」で新しいチャット →「日本史」と打って改行 → ペースト → 送信。<br><b>ほかの教科</b>：「数学」などと打つ →「＋」→「カメラ」で撮る → 送信。</p>
+        <div class="point" style="margin-top:8px">無料版のChatGPTは、<b>写真を送れる回数が1日数回まで</b>。文字が多い日本史と英語は、文字で送って節約しよう。</div>
+      </li>
+      <li>
+        <h3>ヒントや流れを見て、自分で考える</h3>
+        <p class="sub">答えはまだ出ない。自分で考えてから「答え合わせ」と送ろう（合言葉は⑤で）。</p>
+      </li>
+      <li>
+        <h3>最初の返事をアプリに貼る</h3>
+        <p class="sub">返事の下の<b>コピーボタン</b>（四角が2つ重なったマーク）→ アプリに戻って貼りつけ →「カードとまとめを保存」。カードはそのまま<b>今日の復習クイズ</b>に入るよ。</p>
+      </li>
+      <li>
+        <h3>「記録する」を押すと ✓ がつく</h3>
+        <div class="mock">
+          <div class="todo done"><span class="chk">✓</span><span class="w">予習：日本史</span></div>
+          <div class="todo"><span class="chk"></span><span class="w">予習：英語</span><span class="mbtn">はじめる</span></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ③ 日本史 -->
+  <h2 id="nihonshi"><span class="num">3</span>日本史は「流れ」で覚える</h2>
+  <div class="card">
+    <p>日本史の予習では、ChatGPTが<b>「原因→出来事→結果」のストーリー</b>で説明してくれるよ。大事な語句は<b>一問一答のカード</b>になる。</p>
+    <div class="chat">
+      <div class="bubble me">日本史
+（教科書の本文をペースト）</div>
+      <div class="bubble ai">
+        <b>■ 流れ</b>
+        <div class="flow3">
+          <div><small>原因</small>後鳥羽上皇が、幕府を倒して朝廷の力を取りもどそうとした</div>
+          <div><small>出来事</small>1221年、上皇が兵をあげたが、幕府軍が勝った（承久の乱）</div>
+          <div><small>結果</small>幕府は京都に六波羅探題を置いて朝廷を見張り、力が西国にも広がった</div>
+        </div>
+        <b>■ 年号の語呂</b>：ひとにふい（1221）うち、承久の乱
+        <div class="fmt">
+          <b>【カード】</b><br>
+          1221年、後鳥羽上皇が幕府を倒そうと兵をあげた戦いは？｜承久の乱<br>
+          承久の乱のあと、幕府が朝廷を見張るために京都に置いたのは？｜六波羅探題<br>
+          <span class="sub">（10個まで続く）</span>
+        </div>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:8px">※ 上は作った見本です。実際の返事は毎回少しずつちがうよ。</p>
+    <div class="point"><b>流れをノートに3行で書く</b>のがおすすめ。アプリの「まとめ」にも「原因・出来事・結果」で残るから、授業前にさっと見返せる。</div>
+    <div class="point warm"><b>年号や人名は、教科書で必ず確かめて</b>。ChatGPTもたまにまちがえるよ。</div>
+  </div>
+  <div class="card">
+    <h3>前の時代とつなげたいときは</h3>
+    <p class="sub" style="margin:0">アプリの「こんなときは」→「日本史：前の時代とつなげたい」。今の範囲が前の時代からどうつながるかを、年表のように説明してもらえるよ。</p>
+  </div>
+
+  <!-- ④ 復習 -->
+  <h2 id="fukushu"><span class="num">4</span>復習クイズと聞き流し</h2>
+  <div class="card">
+    <h3>忘れかけたころに、もう一度出てくる</h3>
+    <p class="sub" style="margin:0">「覚えた ○」を押したカードは、次に出てくるまでの日にちが、だんだんのびていくよ。</p>
+    <div class="timeline" aria-label="復習のタイミング：今日、1日後、3日後、1週間後、2週間後、1か月後">
+      <div class="pt"><div class="dot">覚</div><span>今日</span></div>
+      <div class="pt"><div class="dot">1</div><span>1日後</span></div>
+      <div class="pt"><div class="dot">2</div><span>3日後</span></div>
+      <div class="pt"><div class="dot">3</div><span>1週間後</span></div>
+      <div class="pt"><div class="dot">4</div><span>2週間後</span></div>
+      <div class="pt"><div class="dot">5</div><span>1か月後</span></div>
+    </div>
+    <table style="margin-top:10px">
+      <tr><td class="word">○ 覚えた</td><td>次に出るまでの日にちがのびる</td></tr>
+      <tr><td class="word">× まだ</td><td>その回の最後にもう1回出て、明日もまた出る</td></tr>
+      <tr><td class="word">「覚えた」の数</td><td>1週間後の復習まで○だったカード</td></tr>
+    </table>
+    <div class="point">下のボタンの「🔁復習」に出る<b>数字が、今日の復習の枚数</b>。1回20枚ずつ、電車の中でサクッと。</div>
+  </div>
+  <div class="card">
+    <h3>今日の復習がおわったら</h3>
+    <p class="sub" style="margin:0">「先取りで10問練習」で、好きなだけ練習できるよ（練習は、次に出る日を変えない）。</p>
+  </div>
+  <div class="card">
+    <h3>🎧 聞き流し</h3>
+    <ol class="steps" style="margin-top:10px">
+      <li><h3>「🔁復習」→「聞き流しをはじめる」</h3></li>
+      <li><h3>問題 → 少し待って → 答え、の順に読み上げる</h3><p class="sub">待っている間に、頭の中で答えてみよう。英単語は英語の発音で読むよ。</p></li>
+      <li><h3>画面はつけたままにする</h3><p class="sub">ロックすると止まるよ。イヤホンを使ってね。</p></li>
+    </ol>
+    <p class="sub" style="margin-top:10px">クイズ中も、カードの右上の🔊で読み上げられるよ。</p>
+  </div>
+
+  <!-- ⑤ 合言葉 -->
+  <h2 id="aikotoba"><span class="num">5</span>合言葉と便利ワザ</h2>
+  <div class="card">
+    <p class="sub">「予習のルール」に書いてあるので、これを送るだけでChatGPTが動いてくれるよ。</p>
+    <table>
+      <tr><th>送る言葉</th><th>こうなる</th></tr>
+      <tr><td class="word">次</td><td>次のヒントが出る（数学・理科で使う）</td></tr>
+      <tr><td class="word">答え合わせ</td><td>全文の訳・解き方・質問の答えが出る</td></tr>
+      <tr><td class="word">降参</td><td>最初からていねいに説明してくれる</td></tr>
+    </table>
+    <div class="point warm"><b>先に自分で考えてから「答え合わせ」</b>。いきなり答えを見ると、授業で当てられたときに困るのは自分だよ。</div>
+  </div>
+  <div class="card">
+    <h3>予習以外のお願い文</h3>
+    <p class="sub">アプリの「📷予習」の下の「こんなときは」から使えるよ。プロジェクト「予習」の中の新しいチャットで使ってね。</p>
+    <table>
+      <tr><td class="word">問題がわからない</td><td>答えは教えず、ヒントを1つずつ出してもらう</td></tr>
+      <tr><td class="word">先生役モード</td><td>週末に、習ったことをChatGPTに説明する。日本史の流れの確認にぴったり</td></tr>
+      <tr><td class="word">前の時代とつなげる</td><td>日本史の範囲を、前の時代からの流れで説明してもらう</td></tr>
+      <tr><td class="word">中学の内容</td><td>あやふやな中学の内容を3行で教えてもらって、確認問題を解く</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>ChatGPTの便利ワザ</h3>
+    <table>
+      <tr><td class="word">声で話す</td><td>入力欄の右にある音声のボタンで、しゃべって送れる。先生役モードは声で説明するとラク</td></tr>
+      <tr><td class="word">もっとかんたんに</td><td>説明がむずかしいときは「もっとかんたんに」と送ればOK</td></tr>
+      <tr><td class="word">図にして</td><td>日本史の人物関係などは「関係を図にして」と送ると、整理しやすい</td></tr>
+    </table>
+  </div>
+
+  <!-- ⑥ 記録と受験 -->
+  <h2 id="juken"><span class="num">6</span>記録と受験までの見通し</h2>
+  <div class="card">
+    <p>「📊記録」では、<b>連続日数・予習時間のグラフ・7日間の復習枚数</b>が見られるよ。点線が目標の30分。</p>
+    <p style="margin:0">週に1回、「<b>LINEで報告する</b>」を押して、相談している人に送ってね。</p>
+  </div>
+  <div class="card">
+    <h3>私立文系の受験は「英語・国語・日本史」が中心</h3>
+    <p class="sub">多くの私立文系の入試は、この3教科。数学や理科は、今は定期テストのためにしっかり。</p>
+    <div class="road" style="margin-top:14px">
+      <div class="st now">
+        <div class="when">今 〜 高2の3月（いまここ）</div>
+        <h3>毎日の予習・復習を習慣にする</h3>
+        <p class="sub" style="margin:0">授業と定期テストで基礎を固める。日本史の語句と英単語は、復習クイズで毎日少しずつ。</p>
+      </div>
+      <div class="st">
+        <div class="when">高3の春 〜 夏</div>
+        <h3>高1・高2の総復習</h3>
+        <p class="sub" style="margin:0">たまったカードとまとめが、そのまま総復習の材料になる。</p>
+      </div>
+      <div class="st">
+        <div class="when">高3の秋 〜</div>
+        <h3>志望校の過去問</h3>
+        <p class="sub" style="margin:0">志望校の出題に合わせて練習。</p>
+      </div>
+    </div>
+    <p class="sub" style="margin:14px 0 0">これはふつうの目安だよ。志望校が決まったら、その学校の入試科目を確かめよう。</p>
+  </div>
+
+  <!-- ⑦ 困ったとき -->
+  <h2 id="komatta"><span class="num">7</span>困ったとき</h2>
+  <details class="qa">
+    <summary>復習クイズの枚数が多すぎる</summary>
+    <div class="ans">
+      <p>1回20枚ずつ出るから、電車や休み時間に分けてやればOK。1日休むと次の日にたまるので、<b>少なくてもいいから毎日</b>がコツ。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>聞き流しの声が出ない</summary>
+    <div class="ans">
+      <p>iPhoneの横の<b>マナーモードのスイッチ</b>と音量を確認してね。それでも出ないときは、クイズ画面の🔊を押してみて。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>ChatGPTがいきなり答えを出す／ルールを守らない</summary>
+    <div class="ans">
+      <p>プロジェクト「予習」の外でチャットを始めているかも。左上のメニューから「予習」を開いて、その中で新しいチャットを始めてね。</p>
+      <p>それでもダメなら「ルールどおり、ヒントからにして」と送ってみて。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>貼ったのに「カードとまとめが見つからなかった」と出る</summary>
+    <div class="ans">
+      <p>ChatGPTが決まった形で答えなかったのが原因。ChatGPTに<br><b>「【まとめ】と【カード】の形で出して」</b><br>と送ってから、その返事をもう一度貼ってね。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>写真が送れない／「上限」と出た</summary>
+    <div class="ans">
+      <p>無料版は、写真を送れる回数が1日数回までと決まっているよ。時間がたつとまた送れるようになる。</p>
+      <p>そのあいだは、カメラの<b>文字読み取り</b>で教科書の文字をコピーして、文字で送ればOK。数式が多い数学は、写真のほうが正確だよ。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>おかしなカードが入った／まとめを消したい</summary>
+    <div class="ans">
+      <p>カードは「🔁復習」→「カードの一覧を見る」→「消す」。まとめは「📝まとめ」の各まとめの「消す」で消せるよ。</p>
+    </div>
+  </details>
+  <details class="qa">
+    <summary>記録が消えた／機種変更したい</summary>
+    <div class="ans">
+      <p>記録はこのスマホの中だけに保存されているよ。Safariの履歴やデータを消すと、一緒に消えることがある。</p>
+      <p>機種変更の前は「📊記録」→「書き出し」でファイルを保存して、新しいスマホで「読み込み」してね。</p>
+    </div>
+  </details>
+
+  <!-- ⑧ ルール -->
+  <h2 id="rule"><span class="num">8</span>守ってほしい3つのルール</h2>
+  <div class="card">
+    <ol class="rules" style="margin:0;padding-left:1.3em">
+      <li><b>答えを丸写ししない。</b>まずヒント、答え合わせは最後。</li>
+      <li><b>ChatGPTもまちがえる。</b>特に年号や人名は、教科書で確かめる。</li>
+      <li><b>個人情報は送らない。</b>名前・住所・学校名・顔が写った写真などはChatGPTに送らない。</li>
+    </ol>
+  </div>
+
+  <a class="btn" href="./" style="margin-top:28px">アプリを開く</a>
+  <footer>ムリしすぎず、少しずつ。忘れても、また出てくるから大丈夫。</footer>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+// アプリ（index.html）の RULES と同じ文。変えるときは両方直す
+const RULES = `あなたは高校2年生（文系・私立大学志望）の予習を手伝う先生です。このプロジェクトのチャットでは、次のルールを守ってください。
+
+■教科
+最初のメッセージに書いてある教科（日本史・英語・現代文・古文・漢文・数学・理科）の先生として答えてください。書いていなければ、写真や文章から判断してください。
+
+■いつものルール
+・答えや全文の訳を、いきなり出さない。まずヒントを出す。（日本史だけは、流れの説明から始めてよい）
+・中学生にもわかる言葉で、短く説明する。
+・私が「次」と送ったら、次のヒントを出す。
+・私が「答え合わせ」と送ったら、全文の訳・解き方・質問の答えを出す。
+・私が「降参」と送ったら、最初からていねいに説明する。
+
+■教科ごとにやること
+日本史：この範囲の流れを「原因→出来事→結果」の短いストーリーで説明／覚えにくい年号があれば語呂合わせを1つ／大事な語句は【カード】に一問一答で入れる
+英語：1文ずつ意味をつかむヒント／大事な文法を1つ／授業で聞かれそうな質問を3つ（答えはまだ出さない）
+現代文：むずかしい言葉の説明／筆者の言いたいことを見つけるヒント／授業で聞かれそうな質問を3つ（答えはまだ出さない）
+古文・漢文：大事な古語や句法の意味／大事な文法を1つ／1文ずつ現代語訳のヒント
+数学：このページで習うことを3行で説明／例題の解き方のヒントを1段ずつ／必要な中学の内容を1つ
+理科：このページで習うことを3行で説明／大事な用語の意味／例題があれば解き方のヒントを1段ずつ
+
+■最初の返事の最後に、アプリに保存するため、必ず次の形をつける（予習以外のお願いのときは、つけなくてよい）
+【まとめ】
+・授業の前に見返すポイントを3つ（1行に1つ。日本史は「原因：」「出来事：」「結果：」で始まる3行にする）
+【カード】
+覚えること｜意味（日本史は「問題｜答え」の一問一答にする）
+（1行に1つ、10個まで。表にしないで「｜」で区切る）`;
+
+document.getElementById("rules").textContent = RULES;
+document.getElementById("copy-rules").addEventListener("click", () => {
+  let ok = false;
+  const ta = document.createElement("textarea");
+  ta.value = RULES;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, RULES.length);
+  try { ok = document.execCommand("copy"); } catch (e) {}
+  ta.remove();
+  if (!ok && navigator.clipboard) { navigator.clipboard.writeText(RULES).catch(() => {}); ok = true; }
+  const t = document.getElementById("toast");
+  t.textContent = ok ? "コピーしたよ。ChatGPTの「指示」に貼ってね" : "コピーできなかった。中身を長押ししてコピーしてね";
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2400);
+});
+</script>
+</body>
+</html>

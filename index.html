@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="予習サクッと">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版</title>
+<meta name="description" content="予習を30分に。日本史は流れで覚えて、忘れる前に復習クイズ。受験まで見すえた予習・暗記アプリ">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #f5f5f2;
+    --card: #ffffff;
+    --text: #1f2328;
+    --sub: #62676d;
+    --line: #e2e2dc;
+    --accent: #3a5a8c;
+    --on-accent: #ffffff;
+    --accent-soft: #e5ebf5;
+    --warm: #c0643c;
+    --warm-soft: #f8e8df;
+    --good: #2f7a5c;
+    --line-green: #06c755;
+    --tabbar: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181c;
+      --card: #21252b;
+      --text: #eceae6;
+      --sub: #a3a7ad;
+      --line: #343941;
+      --accent: #92b1e3;
+      --on-accent: #111a2a;
+      --accent-soft: #232d3d;
+      --warm: #e38c64;
+      --warm-soft: #3a2a22;
+      --good: #7cc7a4;
+      --tabbar: #1c1f24;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 560px; margin: 0 auto; padding: 16px 16px calc(96px + env(safe-area-inset-bottom)); }
+  h1 { font-size: 1.3rem; margin: 4px 0 12px; }
+  h1 small {
+    font-size: .7rem; vertical-align: middle; margin-left: 6px;
+    background: var(--accent); color: var(--on-accent); padding: 1px 8px; border-radius: 99px;
+  }
+  .head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .head a { color: var(--accent); font-weight: 700; font-size: .9rem; text-decoration: none; white-space: nowrap; }
+  h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  p { margin: 0 0 10px; }
+  .sub { color: var(--sub); font-size: .88rem; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--accent-soft); color: var(--accent);
+    font-size: .78rem; font-weight: 700;
+    padding: 1px 10px; border-radius: 99px;
+  }
+  button, a.btn { font: inherit; -webkit-tap-highlight-color: transparent; }
+  button { border: none; cursor: pointer; }
+  .btn {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    padding: 14px; border-radius: 14px;
+    font-size: 1rem; font-weight: 700;
+    background: var(--accent); color: var(--on-accent);
+  }
+  .btn.ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn.plain { background: transparent; color: var(--sub); border: 1px solid var(--line); font-weight: 500; }
+  .btn.line { background: var(--line-green); color: #fff; }
+  .btn.small { display: inline-block; width: auto; padding: 6px 12px; font-size: .85rem; border-radius: 10px; }
+  .btn:active { transform: scale(.98); }
+  .row { display: flex; gap: 10px; }
+  .row > * { flex: 1; }
+
+  /* 数字タイル */
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+  .tile {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 10px 6px; text-align: center;
+  }
+  .tile b { display: block; font-size: 1.6rem; line-height: 1.2; }
+  .tile span { font-size: .75rem; color: var(--sub); }
+
+  /* 今日やること */
+  .todo-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
+  .todo-row + .todo-row { border-top: 1px solid var(--line); }
+  .todo-row .chk {
+    flex: none; width: 24px; height: 24px; border-radius: 7px;
+    border: 2px solid var(--accent); display: grid; place-items: center;
+    font-size: .8rem; font-weight: 800; color: var(--on-accent);
+  }
+  .todo-row.done .chk { background: var(--good); border-color: var(--good); }
+  .todo-row .what { flex: 1; min-width: 0; font-weight: 700; }
+  .todo-row .what small { display: block; font-weight: 500; color: var(--sub); font-size: .8rem; }
+  .todo-row.done .what { color: var(--sub); }
+  .todo-row .btn.small { flex: none; }
+  .plan-empty { color: var(--sub); font-size: .88rem; padding: 10px 0; border-top: 1px solid var(--line); }
+  .pick { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .pick p { font-size: .85rem; color: var(--sub); margin-bottom: 8px; }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt {
+    padding: 7px 14px; border-radius: 99px; font-size: .92rem; font-weight: 600;
+    background: var(--card); color: var(--text); border: 1.5px solid var(--line);
+  }
+  .opt.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+  /* 予習中 */
+  .timer {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--accent); color: var(--on-accent); border-radius: 16px;
+    padding: 12px 16px; margin-bottom: 14px;
+  }
+  .timer b { font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+  .timer span { font-size: .85rem; opacity: .9; }
+  .step { display: flex; gap: 12px; }
+  .step + .step, #a-steps + .step { margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--line); }
+  .step .no {
+    flex: none; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: var(--on-accent); display: grid; place-items: center;
+    font-size: .85rem; font-weight: 700;
+  }
+  .step .body { flex: 1; min-width: 0; }
+  .step h3 { font-size: 1rem; margin: 2px 0 6px; }
+  details { margin-top: 8px; }
+  summary { color: var(--accent); font-size: .88rem; cursor: pointer; }
+  pre.prompt {
+    white-space: pre-wrap; overflow-wrap: anywhere;
+    font-family: inherit; font-size: .82rem;
+    background: var(--bg); border: 1px dashed var(--line);
+    border-radius: 12px; padding: 10px; margin: 8px 0 0;
+  }
+  textarea, input[type=number] {
+    width: 100%; font: inherit; font-size: 16px;
+    padding: 10px; border-radius: 12px;
+    border: 1px solid var(--line); background: var(--bg); color: var(--text);
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  .saved {
+    background: var(--accent-soft); color: var(--accent);
+    border-radius: 12px; padding: 10px 12px; font-size: .9rem; font-weight: 700; margin-top: 10px;
+  }
+  .warn { background: var(--warm-soft); color: var(--warm); }
+  .extra { border-top: 1px solid var(--line); padding: 12px 0; }
+  .extra:first-of-type { border-top: none; padding-top: 0; }
+  .extra h3 { font-size: .95rem; margin: 0 0 2px; }
+  .setup { background: var(--accent-soft); border-color: var(--accent); }
+  .setup h2 { color: var(--accent); }
+  .howto { margin: 4px 0 0; padding-left: 1.2em; font-size: .88rem; color: var(--sub); }
+  .howto li { margin-bottom: 4px; }
+  .howto b { color: var(--text); }
+
+  /* チップ */
+  .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; border: 1px solid var(--line); background: var(--card); color: var(--text);
+    border-radius: 99px; padding: 5px 12px; font-size: .85rem;
+  }
+  .chip.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+  /* クイズ */
+  .big-num { font-size: 2.4rem; font-weight: 800; color: var(--accent); line-height: 1.2; }
+  .flash {
+    min-height: 230px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; gap: 10px; position: relative;
+  }
+  .flash .front { font-size: 1.35rem; font-weight: 700; overflow-wrap: anywhere; }
+  .flash .front.long { font-size: 1.08rem; text-align: left; }
+  .flash .back { font-size: 1.15rem; color: var(--accent); font-weight: 700; overflow-wrap: anywhere; }
+  .flash .say {
+    position: absolute; right: 10px; top: 10px; background: var(--accent-soft); color: var(--accent);
+    border-radius: 99px; padding: 4px 10px; font-size: .8rem; font-weight: 700;
+  }
+  .qcount { display: flex; justify-content: space-between; font-size: .85rem; color: var(--sub); margin-bottom: 8px; }
+  .judge { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .judge button { padding: 18px 8px; border-radius: 16px; font-size: 1.1rem; font-weight: 700; }
+  .judge .ok { background: var(--accent); color: var(--on-accent); }
+  .judge .ng { background: var(--warm); color: var(--on-accent); }
+  .next-info { text-align: center; font-size: .82rem; color: var(--sub); min-height: 1.4em; margin-top: 8px; }
+  .result-big { font-size: 3rem; font-weight: 800; text-align: center; color: var(--accent); margin: 8px 0; }
+  .listen-card { min-height: 260px; }
+  .listen-card .front { font-size: 1.25rem; }
+
+  /* まとめ・カード一覧 */
+  .note { border-top: 1px solid var(--line); padding: 12px 0; }
+  .note:first-child { border-top: none; padding-top: 0; }
+  .note-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .note-head .date { color: var(--sub); font-size: .82rem; flex: 1; }
+  .note ul { margin: 0; padding-left: 1.2em; }
+  .note li { margin-bottom: 2px; }
+  .note ul.flow { list-style: none; padding: 0; display: grid; gap: 4px; }
+  .note ul.flow li { background: var(--bg); border-radius: 10px; padding: 6px 10px; }
+  .note ul.flow small { color: var(--warm); font-weight: 800; margin-right: 6px; }
+  .link-del { background: none; color: var(--sub); font-size: .78rem; padding: 2px 4px; text-decoration: underline; }
+  .empty { color: var(--sub); font-size: .9rem; text-align: center; padding: 16px 0; }
+  .clist { font-size: .88rem; }
+  .clist div { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+  .clist div span:first-child { flex: 1.2; font-weight: 700; overflow-wrap: anywhere; }
+  .clist div span:nth-child(2) { flex: 1; color: var(--sub); overflow-wrap: anywhere; }
+  .lv { font-size: .7rem; color: var(--sub); white-space: nowrap; }
+
+  /* グラフ */
+  .chart { position: relative; height: 160px; margin: 8px 0 4px; }
+  .bars { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 2px; }
+  .bars .col {
+    flex: 1; height: 100%; display: flex; align-items: flex-end; justify-content: center;
+    background: none; padding: 0; position: relative;
+  }
+  .bars .bar { width: 70%; max-width: 18px; background: var(--accent); border-radius: 4px 4px 0 0; min-height: 0; }
+  .bars .col.sel .bar { outline: 2px solid var(--text); outline-offset: 1px; }
+  .goal {
+    position: absolute; left: 0; right: 0; z-index: 2;
+    border-top: 1.5px dashed var(--warm); pointer-events: none;
+  }
+  .goal span {
+    position: absolute; left: 0; top: -22px; font-size: .72rem; color: var(--warm); font-weight: 700;
+    background: var(--card); padding: 0 4px; border-radius: 4px;
+  }
+  .baseline { position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--line); }
+  .xlabels { display: flex; gap: 2px; font-size: .68rem; color: var(--sub); text-align: center; }
+  .xlabels span { flex: 1; }
+  .xlabels span.today { color: var(--text); font-weight: 700; }
+  .chart-info { font-size: .88rem; min-height: 1.5em; margin-top: 6px; }
+
+  /* タブ */
+  nav.tabs {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+    background: var(--tabbar); border-top: 1px solid var(--line);
+    display: flex; justify-content: center;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  nav.tabs button {
+    flex: 1; max-width: 140px; background: none; color: var(--sub);
+    padding: 8px 2px 10px; font-size: .75rem; position: relative;
+  }
+  nav.tabs button b { display: block; font-size: 1.25rem; line-height: 1.3; }
+  nav.tabs button.on { color: var(--accent); font-weight: 700; }
+  nav.tabs .badge {
+    position: absolute; top: 4px; left: calc(50% + 8px);
+    background: var(--warm); color: var(--on-accent); font-size: .65rem; font-weight: 800;
+    border-radius: 99px; padding: 0 6px; line-height: 1.5;
+  }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+    background: var(--text); color: var(--bg);
+    padding: 10px 18px; border-radius: 99px; font-size: .9rem; z-index: 10;
+    opacity: 0; pointer-events: none; transition: opacity .2s; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- ===== 予習（ホーム） ===== -->
+  <section id="tab-home">
+    <div id="home-idle">
+      <div class="head">
+        <h1>予習サクッと<small>受験版</small></h1>
+        <a href="guide.html">使い方 →</a>
+      </div>
+      <div class="card setup" id="setup-banner" hidden>
+        <h2>はじめに：ChatGPTの準備（1回だけ）</h2>
+        <p class="sub">ChatGPTに「予習のルール」を覚えさせておくと、毎回お願い文を貼らなくてよくなるよ。3分で終わる。</p>
+        <a class="btn" href="guide.html#junbi">やり方を見る</a>
+        <button class="btn plain" id="setup-done" style="margin-top:8px">もう準備できた</button>
+      </div>
+      <div class="tiles">
+        <div class="tile"><b id="t-streak">0</b><span>連続日数</span></div>
+        <div class="tile"><b id="t-today">0</b><span>今日の予習（分）</span></div>
+        <div class="tile"><b id="t-cards">0</b><span>覚えたカード</span></div>
+      </div>
+
+      <div class="card">
+        <h2>今日やること</h2>
+        <div id="todo"></div>
+        <div class="pick">
+          <p>予習する教科をタップして追加（明日の授業の分）</p>
+          <div class="opts" id="plan-opts"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>こんなときは</h2>
+        <div class="extra">
+          <h3>問題がわからない</h3>
+          <p class="sub">答えは教えず、ヒントを1つずつ出してもらう</p>
+          <button class="btn small ghost" data-extra="hint">お願い文をコピーして開く</button>
+        </div>
+        <div class="extra">
+          <h3>週末：先生役モード</h3>
+          <p class="sub">習ったことをChatGPTに説明して、まちがいを見つけてもらう。日本史の流れの確認にぴったり</p>
+          <button class="btn small ghost" data-extra="teach">お願い文をコピーして開く</button>
+        </div>
+        <div class="extra">
+          <h3>日本史：前の時代とつなげたい</h3>
+          <p class="sub">今の範囲が、前の時代からどうつながるかを年表のように説明してもらう</p>
+          <button class="btn small ghost" data-extra="link">お願い文をコピーして開く</button>
+        </div>
+        <div class="extra">
+          <h3>中学の内容があやふや</h3>
+          <p class="sub">中学の内容を3行で説明して、確認問題を出してもらう</p>
+          <button class="btn small ghost" data-extra="junior">お願い文をコピーして開く</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="home-active" hidden>
+      <div class="timer">
+        <div><span id="a-subj">日本史</span><br><span>予習中</span></div>
+        <b id="a-time">0:00</b>
+      </div>
+
+      <div class="card">
+        <div id="a-steps"></div>
+        <div class="step">
+          <div class="no" id="a-paste-no">5</div>
+          <div class="body">
+            <h3>ChatGPTの最初の返事をここに貼る</h3>
+            <p class="sub">返事の下にある<b>コピーボタン</b>（四角が2つ重なったマーク）を押す → 下に貼りつけ。カードとまとめが自動で保存されるよ。</p>
+            <textarea id="a-paste" placeholder="ここに貼りつけ"></textarea>
+            <button class="btn ghost" id="a-save" style="margin-top:8px">カードとまとめを保存</button>
+            <div id="a-saved" hidden></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="finish-box">
+        <h2>予習おわり！</h2>
+        <div class="row" style="align-items:center">
+          <span style="flex:none">かかった時間</span>
+          <input type="number" id="a-min" min="1" max="180" inputmode="numeric" style="flex:1">
+          <span style="flex:none">分</span>
+        </div>
+        <button class="btn" id="a-finish" style="margin-top:12px">記録する</button>
+        <button class="btn plain" id="a-cancel" style="margin-top:8px">やめる（記録しない）</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 復習クイズ ===== -->
+  <section id="tab-quiz" hidden>
+    <h1>復習クイズ</h1>
+    <div class="chips" id="quiz-chips"></div>
+
+    <div id="quiz-start">
+      <div class="card" style="text-align:center">
+        <div id="due-box"></div>
+        <button class="btn" id="quiz-go" style="margin-top:12px">復習スタート</button>
+        <button class="btn ghost" id="practice-go" style="margin-top:10px">先取りで10問練習</button>
+        <p class="sub" style="margin:10px 0 0">○にしたカードは、1日後→3日後→1週間後→2週間後…と、忘れかけたころにまた出てくるよ。</p>
+      </div>
+      <div class="card" id="listen-box">
+        <h2>🎧 聞き流し</h2>
+        <p class="sub">問題 → 少し待って → 答え、の順にスマホが読み上げるよ。電車で目を休めたいときに。</p>
+        <button class="btn ghost" id="listen-go">聞き流しをはじめる</button>
+        <p class="sub" style="margin:8px 0 0">※ 画面をつけたままにしてね（ロックすると止まるよ）</p>
+      </div>
+      <p class="sub" id="card-summary" style="text-align:center"></p>
+    </div>
+
+    <div id="quiz-play" hidden>
+      <div class="qcount"><span id="q-no"></span><span id="q-subj"></span></div>
+      <div class="card flash">
+        <button class="say" id="q-say" aria-label="読み上げる">🔊</button>
+        <div class="front" id="q-front"></div>
+        <div class="back" id="q-back" hidden></div>
+      </div>
+      <button class="btn" id="q-show">答えを見る</button>
+      <div class="judge" id="q-judge" hidden>
+        <button class="ng" id="q-ng">まだ ×</button>
+        <button class="ok" id="q-ok">覚えた ○</button>
+      </div>
+      <div class="next-info" id="q-next"></div>
+      <button class="link-del" id="q-quit" style="display:block;margin:10px auto 0">クイズをやめる</button>
+    </div>
+
+    <div id="quiz-end" class="card" hidden>
+      <p style="text-align:center;margin:0">今回の結果</p>
+      <div class="result-big" id="q-result"></div>
+      <p class="sub" style="text-align:center" id="q-comment"></p>
+      <button class="btn" id="q-again">つづける</button>
+      <button class="btn plain" id="q-back-start" style="margin-top:8px">もどる</button>
+    </div>
+
+    <div id="listen-play" hidden>
+      <div class="qcount"><span id="l-no"></span><span id="l-subj"></span></div>
+      <div class="card flash listen-card">
+        <div class="front" id="l-front"></div>
+        <div class="back" id="l-back" hidden></div>
+      </div>
+      <button class="btn" id="listen-stop">■ 止める</button>
+    </div>
+
+    <details class="card">
+      <summary>カードの一覧を見る</summary>
+      <div class="clist" id="card-list" style="margin-top:10px"></div>
+    </details>
+  </section>
+
+  <!-- ===== まとめ ===== -->
+  <section id="tab-notes" hidden>
+    <h1>授業前のまとめ</h1>
+    <p class="sub">授業の前の5分で見返そう。日本史は「原因→出来事→結果」で並んでいるよ。</p>
+    <div class="chips" id="note-chips"></div>
+    <div class="card" id="note-list"></div>
+  </section>
+
+  <!-- ===== 記録 ===== -->
+  <section id="tab-log" hidden>
+    <h1>記録</h1>
+    <div class="tiles">
+      <div class="tile"><b id="l-streak">0</b><span>連続日数</span></div>
+      <div class="tile"><b id="l-days">0</b><span>7日間で予習</span></div>
+      <div class="tile"><b id="l-rev">0</b><span>7日間の復習（枚）</span></div>
+    </div>
+    <div class="card">
+      <h2>毎日の予習時間（分）</h2>
+      <p class="sub" style="margin:0 0 16px">最近14日間（太字の日付が今日）。棒を押すとくわしく見られるよ。</p>
+      <div class="chart" id="chart">
+        <div class="baseline"></div>
+        <div class="goal" id="goal"><span>目標30分</span></div>
+        <div class="bars" id="bars"></div>
+      </div>
+      <div class="xlabels" id="xlabels"></div>
+      <div class="chart-info" id="chart-info"></div>
+    </div>
+    <div class="card">
+      <h2>がんばりを報告する</h2>
+      <p class="sub">この1週間の記録を、相談している人にLINEで送れるよ。</p>
+      <button class="btn line" id="report">LINEで報告する</button>
+    </div>
+    <div class="card">
+      <h2>ChatGPTの準備</h2>
+      <p class="sub">ChatGPTのプロジェクト「予習」の「指示」に、このルールを貼っておくと、毎回のお願い文がいらなくなるよ。</p>
+      <button class="btn ghost" id="copy-rules">予習のルールをコピー</button>
+      <details>
+        <summary>ルールの中身を見る</summary>
+        <pre class="prompt" id="rules-text"></pre>
+      </details>
+      <p class="sub" style="margin:10px 0 0">くわしいやり方は <a href="guide.html#junbi" style="color:var(--accent)">使い方ガイド</a> へ。</p>
+    </div>
+    <div class="card">
+      <h2>ホーム画面に置く</h2>
+      <p class="sub" style="margin:0">Safariでこのページを開いて、下の「共有」ボタン（□に↑）→「ホーム画面に追加」。アプリみたいにすぐ開けるよ。</p>
+    </div>
+    <a class="btn ghost" href="guide.html" style="margin-bottom:14px">使い方ガイドを見る</a>
+    <div class="card">
+      <h2>データ</h2>
+      <p class="sub">記録はこのスマホの中だけに保存されます。機種変更の前は「書き出し」でバックアップしてね。</p>
+      <div class="row">
+        <button class="btn small ghost" id="export">書き出し</button>
+        <button class="btn small ghost" id="import-btn">読み込み</button>
+        <button class="btn small plain" id="reset">全部消す</button>
+      </div>
+      <input type="file" id="import" accept="application/json,.json" hidden>
+    </div>
+  </section>
+
+</main>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="home" class="on"><b>📷</b>予習</button>
+  <button data-tab="quiz"><b>🔁</b>復習<span class="badge" id="due-badge" hidden></span></button>
+  <button data-tab="notes"><b>📝</b>まとめ</button>
+  <button data-tab="log"><b>📊</b>記録</button>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+// ================= 設定 =================
+// text: true の教科は、写真の代わりにカメラの文字読み取りで送る（写真の回数の節約）
+const SUBJECTS = [
+  { k: "jh", name: "日本史", say: "日本史", note: "流れ・一問一答", card: "問題｜答え（一問一答）", text: true },
+  { k: "en", name: "英語", say: "英語", note: "単語・和訳", card: "英単語・熟語｜意味", text: true },
+  { k: "ge", name: "現代文", say: "現代文", note: "言葉・読解", card: "言葉｜意味" },
+  { k: "ko", name: "古文・漢文", say: "古文」か「漢文", note: "古語・訳", card: "古語・句法｜意味" },
+  { k: "ma", name: "数学", say: "数学", note: "例題・公式", card: "公式・用語｜意味や使い方" },
+  { k: "sc", name: "理科", say: "理科", note: "用語・しくみ", card: "用語｜意味" },
+];
+const GPT_URL = "https://chatgpt.com/";
+const GOAL = 30;
+const STORE_KEY = "yoshu-juken-v1";
+// ○が続くたびに、次に出すまでの日数をのばす（1日後→3日後→1週間後→2週間後→1か月後→2か月後）
+const INTERVALS = [1, 3, 7, 14, 30, 60];
+const MASTER_LEVEL = 3; // 1週間後の復習まで○ → 「覚えた」
+const ROUND = 20;       // 復習クイズ1回の枚数
+
+// ChatGPTのプロジェクト「予習」の「指示」に貼るルール（guide.html にも同じ文があるので、変えるときは両方直す）
+const RULES = `あなたは高校2年生（文系・私立大学志望）の予習を手伝う先生です。このプロジェクトのチャットでは、次のルールを守ってください。
+
+■教科
+最初のメッセージに書いてある教科（日本史・英語・現代文・古文・漢文・数学・理科）の先生として答えてください。書いていなければ、写真や文章から判断してください。
+
+■いつものルール
+・答えや全文の訳を、いきなり出さない。まずヒントを出す。（日本史だけは、流れの説明から始めてよい）
+・中学生にもわかる言葉で、短く説明する。
+・私が「次」と送ったら、次のヒントを出す。
+・私が「答え合わせ」と送ったら、全文の訳・解き方・質問の答えを出す。
+・私が「降参」と送ったら、最初からていねいに説明する。
+
+■教科ごとにやること
+日本史：この範囲の流れを「原因→出来事→結果」の短いストーリーで説明／覚えにくい年号があれば語呂合わせを1つ／大事な語句は【カード】に一問一答で入れる
+英語：1文ずつ意味をつかむヒント／大事な文法を1つ／授業で聞かれそうな質問を3つ（答えはまだ出さない）
+現代文：むずかしい言葉の説明／筆者の言いたいことを見つけるヒント／授業で聞かれそうな質問を3つ（答えはまだ出さない）
+古文・漢文：大事な古語や句法の意味／大事な文法を1つ／1文ずつ現代語訳のヒント
+数学：このページで習うことを3行で説明／例題の解き方のヒントを1段ずつ／必要な中学の内容を1つ
+理科：このページで習うことを3行で説明／大事な用語の意味／例題があれば解き方のヒントを1段ずつ
+
+■最初の返事の最後に、アプリに保存するため、必ず次の形をつける（予習以外のお願いのときは、つけなくてよい）
+【まとめ】
+・授業の前に見返すポイントを3つ（1行に1つ。日本史は「原因：」「出来事：」「結果：」で始まる3行にする）
+【カード】
+覚えること｜意味（日本史は「問題｜答え」の一問一答にする）
+（1行に1つ、10個まで。表にしないで「｜」で区切る）`;
+
+const TAIL = s => `
+最後に、アプリに保存するので、次の形で必ず出してください。
+【まとめ】
+${s.k === "jh" ? "・「原因：」「出来事：」「結果：」で始まる3行" : "・授業の前に見返すポイントを3つ（1行に1つ）"}
+【カード】
+${s.card}
+（1行に1つ、10個まで。表にしないで「｜」で区切る）`;
+
+// プロジェクトを作っていないとき用のお願い文
+const PROMPTS = {
+  jh: s => `あなたは高校2年生向けの日本史の先生です。
+送った写真や文章は、明日の授業で習う教科書のページです。予習を手伝ってください。
+
+1. この範囲の流れを「原因→出来事→結果」の短いストーリーで説明してください。
+2. 覚えにくい年号があれば、語呂合わせを1つ作ってください。
+3. 大事な語句を、一問一答の問題にしてください（最後の【カード】に入れてください）。
+${TAIL(s)}`,
+  en: s => `あなたは高校2年生向けの英語の先生です。
+送った写真や文章は、明日の授業で習う教科書のページです。予習を手伝ってください。
+
+1. 1文ずつ、意味をつかむためのヒントを出してください。まだ全文の訳は出さないでください。
+2. 大事な文法を1つだけ、かんたんに説明してください。
+3. 授業で先生に聞かれそうな質問を3つ出してください（答えはまだ出さない）。
+
+私が「答え合わせ」と送ったら、全文の訳と質問の答えを出してください。
+${TAIL(s)}`,
+  ge: s => `あなたは高校2年生向けの国語（現代文）の先生です。
+送った写真や文章は、明日の授業で読む文章です。予習を手伝ってください。
+
+1. 読み方や意味がむずかしい言葉を選んで、かんたんに説明してください。
+2. 筆者がいちばん言いたいことを見つけるためのヒントを出してください（答えはまだ出さない）。
+3. 授業で先生に聞かれそうな質問を3つ出してください（答えはまだ出さない）。
+
+私が「答え合わせ」と送ったら、段落ごとの要約と質問の答えを出してください。
+${TAIL(s)}`,
+  ko: s => `あなたは高校2年生向けの古文・漢文の先生です。
+送った写真や文章は、明日の授業で読む教科書のページです。予習を手伝ってください。
+
+1. 大事な古語（漢文なら大事な漢字や句法）を選んで、意味を説明してください。
+2. 大事な文法（助動詞や返り点など）を1つだけ、かんたんに説明してください。
+3. 1文ずつ、現代語訳のヒントを出してください。まだ全文の訳は出さないでください。
+
+私が「答え合わせ」と送ったら、全文の現代語訳を出してください。
+${TAIL(s)}`,
+  ma: s => `あなたは高校2年生向けの数学の先生です。
+送った写真や文章は、明日の授業で習う教科書のページです。予習を手伝ってください。
+
+1. このページで習うことを、中学生にもわかる言葉で3行で説明してください。
+2. 例題の解き方を、ヒントとして1段ずつ出してください。一気に答えを出さないでください。
+3. このページを理解するのに必要な中学の内容があれば、1つだけ教えてください。
+
+私が「次」と送ったら次のヒントを、「答え合わせ」と送ったら解き方の全体を出してください。
+${TAIL(s)}`,
+  sc: s => `あなたは高校2年生向けの理科の先生です。
+送った写真や文章は、明日の授業で習う教科書のページです。予習を手伝ってください。
+
+1. このページで習うことを、中学生にもわかる言葉で3行で説明してください。
+2. 大事な用語を選んで、意味をかんたんに説明してください。
+3. 例題があれば、解き方のヒントを1段ずつ出してください。一気に答えを出さないでください。
+
+私が「次」と送ったら次のヒントを、「答え合わせ」と送ったら解き方の全体を出してください。
+${TAIL(s)}`,
+};
+const TIPS = {
+  jh: "流れ（原因→出来事→結果）を読んで、ノートに3行で書いてみよう。わからない語句は、そのまま質問してOK。",
+  en: "ヒントを見て、まず自分で訳してみる。むずかしければ「答え合わせ」と送ってOK。",
+  ge: "筆者の言いたいことを自分の言葉で1行書いてから「答え合わせ」と送ろう。",
+  ko: "ヒントを見て訳してみる。むずかしければ「答え合わせ」と送ってOK。",
+  ma: "ヒントを見て例題を解いてみる。つまったら「次」と送ると、次のヒントが出るよ。",
+  sc: "ヒントを見て、用語の意味を自分の言葉で言えるか確かめよう。例題は「次」で1段ずつ。",
+};
+const EXTRAS = {
+  hint: `高校2年生です。写真の問題がわかりません。
+答えはすぐに教えないでください。ヒントを1つずつ出して、私が自分で解けるように手伝ってください。
+私が「降参」と送ったときだけ、解き方を最初から説明してください。`,
+  teach: `今から私が、今週の授業で習ったことをあなたに説明します。あなたは生徒の役です。
+私の説明にまちがいや足りないところがあれば、質問する形で教えてください。
+最後に、私の理解度を5段階で教えて、もう一度確認するとよいところを1つ教えてください。
+では説明します：`,
+  link: `高校2年生です。日本史で今、「（ここに今の範囲を書く）」を習っています。
+この範囲が、1つ前の時代からどうつながっているかを、年表のように5行で説明してください。
+最後に、つながりを確かめる一問一答を5問出してください。答えは私が答えてから教えてください。`,
+  junior: `高校2年生です。授業で、中学で習った「（ここに内容を書く）」があやふやです。
+中学生にもわかる言葉で3行で説明して、確認問題を3問出してください。
+答えは、私が答えを送ってから教えてください。`,
+};
+
+// ================= データ =================
+function blank() {
+  return { setupDone: false, sessions: [], cards: [], notes: [], active: null, plan: { date: "", subjects: [] }, revlog: {} };
+}
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+    if (d && Array.isArray(d.cards)) return Object.assign(blank(), d);
+  } catch (e) {}
+  return blank();
+}
+let state = load();
+function save() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+
+// ================= 小道具 =================
+const $ = id => document.getElementById(id);
+const WD = ["日", "月", "火", "水", "木", "金", "土"];
+const subjOf = k => SUBJECTS.find(s => s.k === k) || SUBJECTS[0];
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function ymd(d) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+const today = () => ymd(new Date());
+function parseYmd(s) { const p = s.split("-"); return new Date(+p[0], p[1] - 1, +p[2]); }
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+function md(d) { return `${d.getMonth() + 1}/${d.getDate()}(${WD[d.getDay()]})`; }
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+function toast(msg) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast.h);
+  toast.h = setTimeout(() => t.classList.remove("show"), 2200);
+}
+function copyText(text) {
+  // タップの直後に同期的にコピーする（iPhoneでも確実に動くように）
+  let ok = false;
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, text.length);
+  try { ok = document.execCommand("copy"); } catch (e) {}
+  ta.remove();
+  if (!ok && navigator.clipboard) {
+    navigator.clipboard.writeText(text).catch(() => {});
+    ok = true;
+  }
+  return ok;
+}
+
+// ================= 集計 =================
+function minutesOn(dateStr) {
+  return state.sessions.filter(s => s.date === dateStr).reduce((a, s) => a + s.min, 0);
+}
+function studied(dateStr) { return state.sessions.some(s => s.date === dateStr); }
+function studiedSubjToday(k) { return state.sessions.some(s => s.date === today() && s.subject === k); }
+function streak() {
+  let d = new Date(), n = 0;
+  if (!studied(ymd(d))) d = addDays(d, -1); // 今日まだなら昨日から数える
+  while (studied(ymd(d))) { n++; d = addDays(d, -1); }
+  return n;
+}
+function masteredCount() { return state.cards.filter(c => (c.level || 0) >= MASTER_LEVEL).length; }
+function cardsFor(f) { return state.cards.filter(c => f === "all" || c.subject === f); }
+function dueFor(f) {
+  const t = today();
+  return cardsFor(f).filter(c => (c.due || t) <= t)
+    .sort((a, b) => (a.due || "").localeCompare(b.due || "") || (a.level || 0) - (b.level || 0));
+}
+function reviewedOn(dateStr) { const r = state.revlog[dateStr]; return r ? r.ok + r.ng : 0; }
+function todayPlan() { return state.plan && state.plan.date === today() ? state.plan.subjects : []; }
+
+// ================= ChatGPTの返事を読み取る =================
+function section(text, name) {
+  const mark = "【" + name + "】";
+  const i = text.lastIndexOf(mark);
+  if (i < 0) return "";
+  const rest = text.slice(i + mark.length);
+  const end = rest.indexOf("【");
+  return end >= 0 ? rest.slice(0, end) : rest;
+}
+function cleanLine(line) {
+  return line.replace(/^\s*(?:[-・*•●◦]|\d+[.)．、]|[（(]\d+[)）]|Q\d+[.:：]?)\s*/, "").trim();
+}
+function parseReply(raw) {
+  const text = raw.replace(/\r/g, "").replace(/\*\*/g, "").replace(/`/g, "");
+  const cardPart = section(text, "カード") || text;
+  const cards = [];
+  cardPart.split("\n").forEach(line => {
+    if (!/[|｜]/.test(line)) return;
+    if (/^[\s|｜:：\-ー—]+$/.test(line)) return; // 表の区切り線
+    const parts = line.split(/[|｜]/).map(cleanLine).filter(Boolean);
+    if (parts.length < 2) return;
+    const front = parts[0].slice(0, 120);
+    const back = parts.slice(1).join(" / ").slice(0, 200);
+    // 見出し行（「覚えること｜意味」「問題｜答え」など）はとばす
+    if (/^意味/.test(back) || (/^問題/.test(front) && /^答え/.test(back)) ||
+        (/^(単語|英単語|古語|言葉|用語|公式|覚えること)/.test(front) && /意味/.test(back))) return;
+    cards.push({ front, back });
+  });
+  const points = section(text, "まとめ").split("\n")
+    .map(cleanLine)
+    .filter(l => l && !/[|｜]/.test(l) && !/ポイントを3つ|で始まる3行/.test(l))
+    .slice(0, 5)
+    .map(l => l.slice(0, 200));
+  return { cards, points };
+}
+
+// ================= 予習（ホーム） =================
+function stepsFor(s) {
+  const open = {
+    t: "ChatGPTを開いて、プロジェクト「予習」で新しいチャット",
+    html: `<a class="btn" href="${GPT_URL}" target="_blank" rel="noopener">ChatGPT を開く</a>
+      <p class="sub" style="margin:8px 0 0">左上のメニュー → プロジェクト「予習」→ 新しいチャット</p>`,
+  };
+  const fallback = `<details><summary>プロジェクトを作っていないときは</summary>
+      <p class="sub" style="margin:8px 0 0">教科名の代わりに、このお願い文を貼って送ってね。</p>
+      <pre class="prompt">${esc(PROMPTS[s.k](s))}</pre>
+      <button class="btn small ghost copy-prompt" style="margin-top:8px">お願い文をコピー</button></details>`;
+  const hint = { t: s.k === "jh" ? "流れを読んで、自分でまとめる" : "ヒントを見て、自分で考える", html: `<p class="sub" style="margin:0">${TIPS[s.k]}</p>` };
+  if (s.text) return [
+    {
+      t: "教科書の文をコピーする",
+      html: `<ol class="howto">
+        <li>iPhoneの<b>カメラ</b>を教科書の本文に向ける</li>
+        <li>右下の<b>文字読み取りマーク</b>（枠の中に線）を押す</li>
+        <li><b>「すべてを選択」→「コピー」</b></li></ol>
+        <p class="sub" style="margin:6px 0 0">写真を送る回数（1日数回まで）を節約できるよ。うまくいかなければ写真でもOK。</p>`,
+    },
+    open,
+    { t: `「${s.say}」と打って、貼りつけて送る`, html: `<p class="sub" style="margin:0">入力欄に「${s.say}」と打って改行 → 長押しして「ペースト」→ 送信</p>${fallback}` },
+    hint,
+  ];
+  return [
+    open,
+    { t: `「${s.say}」と打って、教科書を撮って送る`, html: `<p class="sub" style="margin:0">入力欄に「${s.say}」と打つ →「＋」→「カメラ」で明日やるページを撮る → 送信</p>${fallback}` },
+    hint,
+  ];
+}
+
+function renderTodo() {
+  const due = dueFor("all").length;
+  const plan = todayPlan();
+  let html = "";
+  if (due > 0) {
+    html += `<div class="todo-row"><span class="chk"></span>
+      <span class="what">復習クイズ<small>${due}枚・約${Math.max(1, Math.ceil(due * 10 / 60))}分</small></span>
+      <button class="btn small" data-go="review">はじめる</button></div>`;
+  } else if (state.cards.length) {
+    html += `<div class="todo-row done"><span class="chk">✓</span>
+      <span class="what">復習クイズ<small>今日の分はおわり！</small></span></div>`;
+  }
+  plan.forEach(k => {
+    const s = subjOf(k);
+    const done = studiedSubjToday(k);
+    html += `<div class="todo-row${done ? " done" : ""}"><span class="chk">${done ? "✓" : ""}</span>
+      <span class="what">予習：${s.name}<small>${s.note}</small></span>
+      <button class="btn small${done ? " ghost" : ""}" data-subj="${k}">${done ? "もう一度" : "はじめる"}</button></div>`;
+  });
+  if (!plan.length) html += `<div class="plan-empty">下から、予習する教科を選んでね。</div>`;
+  $("todo").innerHTML = html;
+  $("plan-opts").innerHTML = SUBJECTS.map(s =>
+    `<button class="opt${plan.includes(s.k) ? " on" : ""}" data-plan="${s.k}">${s.name}</button>`).join("");
+}
+
+function renderHome() {
+  $("t-streak").textContent = streak();
+  $("t-today").textContent = minutesOn(today());
+  $("t-cards").textContent = masteredCount();
+  $("setup-banner").hidden = !!state.setupDone;
+  renderTodo();
+  renderBadge();
+
+  const a = state.active;
+  $("home-idle").hidden = !!a;
+  $("home-active").hidden = !a;
+  if (a) {
+    const s = subjOf(a.subject);
+    const steps = stepsFor(s);
+    $("a-subj").textContent = s.name;
+    $("a-steps").innerHTML = steps.map((st, i) => `
+      <div class="step"><div class="no">${i + 1}</div>
+        <div class="body"><h3>${st.t}</h3>${st.html}</div></div>`).join("");
+    $("a-paste-no").textContent = steps.length + 1;
+    if ($("a-paste").value !== (a.draft || "")) $("a-paste").value = a.draft || "";
+    tick();
+  }
+}
+function renderBadge() {
+  const n = dueFor("all").length;
+  $("due-badge").hidden = !n;
+  $("due-badge").textContent = n > 99 ? "99+" : n;
+}
+function elapsedMin() {
+  if (!state.active) return 0;
+  return Math.max(1, Math.round((Date.now() - state.active.start) / 60000));
+}
+function tick() {
+  if (!state.active) return;
+  const sec = Math.floor((Date.now() - state.active.start) / 1000);
+  const m = Math.floor(sec / 60), s = sec % 60;
+  $("a-time").textContent = `${m}:${String(s).padStart(2, "0")}`;
+  if (document.activeElement !== $("a-min")) $("a-min").value = Math.min(180, elapsedMin());
+}
+setInterval(tick, 1000);
+
+function startPrep(k) {
+  state.active = { subject: k, start: Date.now(), draft: "" };
+  save();
+  $("a-saved").hidden = true;
+  renderHome();
+  window.scrollTo(0, 0);
+}
+$("todo").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  if (b.dataset.subj) startPrep(b.dataset.subj);
+  if (b.dataset.go === "review") { show("quiz"); startReview(); }
+});
+$("plan-opts").addEventListener("click", e => {
+  const b = e.target.closest("[data-plan]");
+  if (!b) return;
+  const k = b.dataset.plan;
+  const plan = todayPlan().slice();
+  const i = plan.indexOf(k);
+  if (i >= 0) plan.splice(i, 1); else plan.push(k);
+  // 表示はいつも教科の並び順にそろえる
+  state.plan = { date: today(), subjects: SUBJECTS.map(s => s.k).filter(x => plan.includes(x)) };
+  save();
+  renderTodo();
+});
+
+$("a-steps").addEventListener("click", e => {
+  if (!e.target.closest(".copy-prompt") || !state.active) return;
+  const s = subjOf(state.active.subject);
+  copyText(PROMPTS[s.k](s));
+  toast("お願い文をコピーしたよ");
+});
+$("setup-done").addEventListener("click", () => {
+  state.setupDone = true;
+  save();
+  renderHome();
+});
+
+$("a-paste").addEventListener("input", () => {
+  if (!state.active) return;
+  state.active.draft = $("a-paste").value;
+  save();
+});
+
+$("a-save").addEventListener("click", () => {
+  const raw = $("a-paste").value.trim();
+  const box = $("a-saved");
+  box.hidden = false;
+  if (!raw) {
+    box.className = "saved warn";
+    box.textContent = "まだ何も貼られていないよ";
+    return;
+  }
+  const subj = state.active.subject;
+  const { cards, points } = parseReply(raw);
+  const t = today();
+  let added = 0;
+  cards.forEach(c => {
+    const same = state.cards.find(x => x.subject === subj && x.front.toLowerCase() === c.front.toLowerCase());
+    if (same) { same.back = c.back; return; }
+    // 新しいカードは今日の復習に入れる
+    state.cards.push({ id: uid(), subject: subj, front: c.front, back: c.back, date: t, level: 0, due: t });
+    added++;
+  });
+  if (points.length) state.notes.unshift({ id: uid(), subject: subj, date: t, points });
+  save();
+  renderBadge();
+  if (!cards.length && !points.length) {
+    box.className = "saved warn";
+    box.textContent = "カードとまとめが見つからなかったよ。ChatGPTに「【まとめ】と【カード】の形で出して」と送ってから、もう一度貼ってみて。";
+    return;
+  }
+  box.className = "saved";
+  box.textContent = `保存したよ！ 新しいカード ${added}枚／まとめ ${points.length ? "1件" : "なし"}。カードは今日の復習クイズに入ったよ。`;
+  $("a-paste").value = "";
+  state.active.draft = "";
+  save();
+});
+
+$("a-finish").addEventListener("click", () => {
+  const min = Math.max(1, Math.min(180, parseInt($("a-min").value, 10) || elapsedMin()));
+  state.sessions.push({ id: uid(), date: today(), subject: state.active.subject, min });
+  state.active = null;
+  save();
+  renderHome();
+  const m = minutesOn(today());
+  toast(m <= GOAL ? `おつかれさま！今日は${m}分` : `おつかれさま！今日は合計${m}分`);
+});
+$("a-cancel").addEventListener("click", () => {
+  if (!confirm("この予習は記録しないで終わるよ。いい？")) return;
+  state.active = null;
+  save();
+  renderHome();
+});
+
+document.querySelectorAll("[data-extra]").forEach(b => {
+  b.addEventListener("click", () => {
+    copyText(EXTRAS[b.dataset.extra]);
+    toast("お願い文をコピーしたよ");
+    window.open(GPT_URL, "_blank", "noopener");
+  });
+});
+
+// ================= 復習クイズ =================
+let quizFilter = "all";
+let quiz = null;   // { mode: "review" | "practice", items, i, ok, done, retried }
+let listen = null; // { items, i }
+
+function chipsHtml(current, counts) {
+  const all = [{ k: "all", name: "すべて" }].concat(SUBJECTS);
+  return all.map(s => `<button class="chip${s.k === current ? " on" : ""}" data-f="${s.k}">${s.name}${counts ? `（${counts(s.k)}）` : ""}</button>`).join("");
+}
+function lvText(c) {
+  const lv = c.level || 0;
+  if (lv >= MASTER_LEVEL) return "覚えた";
+  return c.due && c.due > today() ? `次は${md(parseYmd(c.due))}` : "今日";
+}
+
+function renderQuiz() {
+  $("quiz-chips").innerHTML = chipsHtml(quizFilter, k => dueFor(k).length);
+  const list = cardsFor(quizFilter);
+  const due = dueFor(quizFilter).length;
+  const playing = !!quiz && !quiz.done;
+  $("quiz-play").hidden = !playing;
+  $("quiz-end").hidden = !(quiz && quiz.done);
+  $("listen-play").hidden = !listen;
+  $("quiz-start").hidden = !!quiz || !!listen;
+
+  if (!list.length) {
+    $("due-box").innerHTML = `<p style="margin:0">まだカードがないよ。</p><p class="sub" style="margin:4px 0 0">予習でChatGPTの返事を貼りつけると、ここにカードがたまるよ。</p>`;
+    $("quiz-go").hidden = true;
+    $("practice-go").hidden = true;
+    $("listen-box").hidden = true;
+  } else {
+    $("due-box").innerHTML = due
+      ? `<p class="sub" style="margin:0">今日の復習</p><div class="big-num">${due}<span style="font-size:1rem">枚</span></div>`
+      : `<p style="margin:0;font-weight:700">今日の復習はおわり！🎉</p><p class="sub" style="margin:4px 0 0">次の復習は、また明日。</p>`;
+    $("quiz-go").hidden = !due;
+    $("quiz-go").textContent = due > ROUND ? `復習スタート（${ROUND}枚ずつ）` : "復習スタート";
+    $("practice-go").hidden = false;
+    $("listen-box").hidden = !("speechSynthesis" in window);
+  }
+  $("card-summary").textContent = list.length ? `カード全部で ${list.length}枚／覚えた ${list.filter(c => (c.level || 0) >= MASTER_LEVEL).length}枚（1週間後の復習まで○）` : "";
+  $("card-list").innerHTML = list.length
+    ? list.slice().reverse().map(c => `<div><span>${esc(c.front)}</span><span>${esc(c.back)}</span><span class="lv">${lvText(c)}</span><button class="link-del" data-delcard="${c.id}">消す</button></div>`).join("")
+    : '<p class="empty">まだありません</p>';
+  if (playing) showQ();
+  renderBadge();
+}
+
+function startReview() {
+  const items = dueFor(quizFilter).slice(0, ROUND);
+  if (!items.length) { renderQuiz(); return; }
+  quiz = { mode: "review", items, i: 0, ok: 0, done: false, retried: new Set() };
+  renderQuiz();
+}
+function startPractice() {
+  // 先取り練習：ランダムに10枚。予定（次に出る日）は変えない
+  const pool = cardsFor(quizFilter).slice();
+  for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+  quiz = { mode: "practice", items: pool.slice(0, 10), i: 0, ok: 0, done: false, retried: new Set() };
+  renderQuiz();
+}
+function showQ() {
+  const c = quiz.items[quiz.i];
+  const total = quiz.items.length;
+  $("q-no").textContent = `${quiz.mode === "review" ? "復習" : "練習"} ${quiz.i + 1} / ${total}`;
+  $("q-subj").textContent = subjOf(c.subject).name;
+  $("q-front").textContent = c.front;
+  $("q-front").classList.toggle("long", c.front.length > 24);
+  $("q-back").textContent = c.back;
+  $("q-back").hidden = true;
+  $("q-show").hidden = false;
+  $("q-judge").hidden = true;
+  $("q-next").textContent = "";
+}
+function judge(ok) {
+  const c = quiz.items[quiz.i];
+  const real = state.cards.find(x => x.id === c.id);
+  const t = today();
+  if (quiz.mode === "review" && real) {
+    if (ok) {
+      const lv = real.level || 0;
+      real.due = ymd(addDays(new Date(), INTERVALS[Math.min(lv, INTERVALS.length - 1)]));
+      real.level = lv + 1;
+    } else {
+      real.level = 0;
+      real.due = ymd(addDays(new Date(), 1));
+      // まちがえたカードは、この回の最後にもう1回だけ出す
+      if (!quiz.retried.has(c.id)) { quiz.retried.add(c.id); quiz.items.push(c); }
+    }
+    state.revlog[t] = state.revlog[t] || { ok: 0, ng: 0 };
+    state.revlog[t][ok ? "ok" : "ng"]++;
+  }
+  if (ok) quiz.ok++;
+  save();
+  quiz.i++;
+  if (quiz.i >= quiz.items.length) {
+    quiz.done = true;
+    const n = quiz.items.length;
+    $("q-result").textContent = `○ ${quiz.ok} / ${n}`;
+    const rest = dueFor(quizFilter).length;
+    $("q-comment").textContent = quiz.mode === "review"
+      ? (rest ? `まだ今日の復習が${rest}枚あるよ。` : "今日の復習はこれでおわり！○のカードは、もう少し先にまた出てくるよ。")
+      : "練習おつかれさま！";
+    $("q-again").hidden = quiz.mode === "review" && !rest;
+    $("q-again").textContent = quiz.mode === "review" ? "つづける" : "もう一回";
+  }
+  renderQuiz();
+}
+function showAnswer() {
+  const c = quiz.items[quiz.i];
+  $("q-back").hidden = false;
+  $("q-show").hidden = true;
+  $("q-judge").hidden = false;
+  if (quiz.mode === "review") {
+    const lv = (state.cards.find(x => x.id === c.id) || c).level || 0;
+    const d = INTERVALS[Math.min(lv, INTERVALS.length - 1)];
+    $("q-next").textContent = `○なら次は${d}日後、×なら明日もう一度`;
+  }
+}
+
+$("quiz-chips").addEventListener("click", e => {
+  const b = e.target.closest("[data-f]");
+  if (!b) return;
+  quizFilter = b.dataset.f;
+  quiz = null;
+  stopListen();
+  renderQuiz();
+});
+$("quiz-go").addEventListener("click", startReview);
+$("practice-go").addEventListener("click", startPractice);
+$("q-show").addEventListener("click", showAnswer);
+$("q-ok").addEventListener("click", () => judge(true));
+$("q-ng").addEventListener("click", () => judge(false));
+$("q-quit").addEventListener("click", () => { quiz = null; renderQuiz(); });
+$("q-again").addEventListener("click", () => (quiz && quiz.mode === "practice" ? startPractice() : startReview()));
+$("q-back-start").addEventListener("click", () => { quiz = null; renderQuiz(); });
+$("q-say").addEventListener("click", () => {
+  const c = quiz && quiz.items[quiz.i];
+  if (!c || !("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  speak($("q-back").hidden ? c.front : c.back);
+});
+$("card-list").addEventListener("click", e => {
+  const id = e.target.dataset.delcard;
+  if (!id) return;
+  if (!confirm("このカードを消す？")) return;
+  state.cards = state.cards.filter(c => c.id !== id);
+  save();
+  renderQuiz();
+});
+
+// ---- 聞き流し（iPhoneの読み上げ機能を使う） ----
+function speak(text) {
+  return new Promise(res => {
+    const u = new SpeechSynthesisUtterance(text.replace(/[〜~｜|]/g, " "));
+    const en = /^[\x00-\x7F’'“”\s]+$/.test(text);
+    u.lang = en ? "en-US" : "ja-JP";
+    u.rate = en ? 0.9 : 1.0;
+    u.onend = u.onerror = res;
+    speechSynthesis.speak(u);
+  });
+}
+function renderListen(c, showBack) {
+  $("l-no").textContent = `🎧 ${listen.i + 1} / ${listen.items.length}`;
+  $("l-subj").textContent = subjOf(c.subject).name;
+  $("l-front").textContent = c.front;
+  $("l-back").textContent = c.back;
+  $("l-back").hidden = !showBack;
+}
+async function runListen() {
+  const me = listen;
+  while (listen === me && me.i < me.items.length) {
+    const c = me.items[me.i];
+    renderListen(c, false);
+    await speak(c.front);
+    if (listen !== me) return;
+    await sleep(2200); // 自分で答えを思い出す時間
+    if (listen !== me) return;
+    renderListen(c, true);
+    await speak(c.back);
+    if (listen !== me) return;
+    await sleep(1200);
+    me.i++;
+  }
+  if (listen === me) { listen = null; toast("聞き流しおわり！"); renderQuiz(); }
+}
+function stopListen() {
+  if (!listen) return;
+  listen = null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+}
+$("listen-go").addEventListener("click", () => {
+  const due = dueFor(quizFilter);
+  const items = (due.length ? due : cardsFor(quizFilter)).slice(0, 30);
+  if (!items.length) return;
+  listen = { items, i: 0 };
+  renderQuiz();
+  runListen(); // タップの流れの中で読み上げを始める（iPhoneの決まり）
+});
+$("listen-stop").addEventListener("click", () => { stopListen(); renderQuiz(); });
+
+// ================= まとめ =================
+let noteFilter = "all";
+function noteItems(points) {
+  const isFlow = points.some(p => /^(原因|出来事|結果)[：:]/.test(p));
+  if (!isFlow) return `<ul>${points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>`;
+  return `<ul class="flow">${points.map(p => {
+    const m = p.match(/^(原因|出来事|結果)[：:]\s*(.*)$/);
+    return m ? `<li><small>${m[1]}</small>${esc(m[2])}</li>` : `<li>${esc(p)}</li>`;
+  }).join("")}</ul>`;
+}
+function renderNotes() {
+  $("note-chips").innerHTML = chipsHtml(noteFilter);
+  const list = state.notes.filter(n => noteFilter === "all" || n.subject === noteFilter);
+  $("note-list").innerHTML = list.length ? list.map(n => `
+    <div class="note">
+      <div class="note-head">
+        <span class="tag">${esc(subjOf(n.subject).name)}</span>
+        <span class="date">${md(parseYmd(n.date))} の予習</span>
+        <button class="link-del" data-delnote="${n.id}">消す</button>
+      </div>
+      ${noteItems(n.points)}
+    </div>`).join("")
+    : '<p class="empty">まだまとめがないよ。<br>予習でChatGPTの返事を貼りつけると、ここにたまるよ。</p>';
+}
+$("note-chips").addEventListener("click", e => {
+  const b = e.target.closest("[data-f]");
+  if (!b) return;
+  noteFilter = b.dataset.f;
+  renderNotes();
+});
+$("note-list").addEventListener("click", e => {
+  const id = e.target.dataset.delnote;
+  if (!id) return;
+  if (!confirm("このまとめを消す？")) return;
+  state.notes = state.notes.filter(n => n.id !== id);
+  save();
+  renderNotes();
+});
+
+// ================= 記録 =================
+let selDay = null;
+function renderLog() {
+  const now = new Date();
+  const last7 = [...Array(7)].map((_, i) => ymd(addDays(now, -i)));
+  $("l-streak").textContent = streak();
+  $("l-days").textContent = last7.filter(studied).length;
+  $("l-rev").textContent = last7.reduce((a, d) => a + reviewedOn(d), 0);
+
+  const days = [...Array(14)].map((_, i) => addDays(now, i - 13));
+  const vals = days.map(d => minutesOn(ymd(d)));
+  const max = Math.max(60, ...vals);
+  $("goal").style.bottom = `${(GOAL / max) * 100}%`;
+  $("bars").innerHTML = days.map((d, i) => {
+    const v = vals[i];
+    const h = v ? Math.max(3, (v / max) * 100) : 0;
+    return `<button class="col${selDay === i ? " sel" : ""}" data-i="${i}" aria-label="${md(d)} ${v}分"><div class="bar" style="height:${h}%"></div></button>`;
+  }).join("");
+  $("xlabels").innerHTML = days.map((d, i) =>
+    `<span class="${i === 13 ? "today" : ""}">${d.getDate()}</span>`).join("");
+  const i = selDay === null ? 13 : selDay;
+  const dayStr = ymd(days[i]);
+  const bySubj = SUBJECTS.map(s => {
+    const m = state.sessions.filter(x => x.date === dayStr && x.subject === s.k).reduce((a, x) => a + x.min, 0);
+    return m ? `${s.name}${m}分` : "";
+  }).filter(Boolean).join("・");
+  const rev = reviewedOn(dayStr);
+  $("chart-info").innerHTML = `<b>${md(days[i])}</b>：予習${vals[i]}分${bySubj ? `（${bySubj}）` : ""}${rev ? `／復習${rev}枚` : ""}`;
+}
+$("bars").addEventListener("click", e => {
+  const b = e.target.closest("[data-i]");
+  if (!b) return;
+  selDay = +b.dataset.i;
+  renderLog();
+});
+$("rules-text").textContent = RULES;
+$("copy-rules").addEventListener("click", () => {
+  copyText(RULES);
+  toast("ルールをコピーしたよ。ChatGPTの「指示」に貼ってね");
+});
+$("report").addEventListener("click", () => {
+  const now = new Date();
+  const days = [...Array(7)].map((_, i) => addDays(now, i - 6));
+  const keys = days.map(ymd);
+  const ss = state.sessions.filter(s => keys.includes(s.date));
+  const total = ss.reduce((a, s) => a + s.min, 0);
+  const studiedDays = keys.filter(studied).length;
+  const perDay = studiedDays ? Math.round(total / studiedDays) : 0;
+  const bySubj = SUBJECTS.map(s => {
+    const n = ss.filter(x => x.subject === s.k).length;
+    return n ? `${s.name}${n}回` : "";
+  }).filter(Boolean).join("・") || "なし";
+  const rv = keys.reduce((a, d) => { const r = state.revlog[d]; if (r) { a.ok += r.ok; a.ng += r.ng; } return a; }, { ok: 0, ng: 0 });
+  const rvTotal = rv.ok + rv.ng;
+  const newCards = state.cards.filter(c => keys.includes(c.date)).length;
+  const text = [
+    "【予習サクッと 受験版 報告】",
+    `${md(days[0])}〜${md(days[6])}`,
+    `予習した日：${studiedDays}/7日（連続${streak()}日）`,
+    `予習した日の平均：${perDay}分（目標${GOAL}分）`,
+    `教科：${bySubj}`,
+    `復習クイズ：${rvTotal}枚${rvTotal ? `（○${Math.round(rv.ok / rvTotal * 100)}%）` : ""}`,
+    `カード：今週${newCards}枚ふえた／全部で${state.cards.length}枚（覚えた${masteredCount()}枚）`,
+  ].join("\n");
+  copyText(text);
+  location.href = "https://line.me/R/share?text=" + encodeURIComponent(text);
+});
+$("export").addEventListener("click", () => {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: "application/json" }));
+  a.download = `yoshu-juken-${today()}.json`;
+  a.click();
+});
+$("import-btn").addEventListener("click", () => $("import").click());
+$("import").addEventListener("change", e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (!Array.isArray(d.cards) || !Array.isArray(d.sessions)) throw 0;
+      state = Object.assign(blank(), d);
+      save();
+      renderLog();
+      toast("読み込んだよ");
+    } catch (err) { toast("読み込めないファイルです"); }
+  };
+  r.readAsText(f);
+  e.target.value = "";
+});
+$("reset").addEventListener("click", () => {
+  if (!confirm("記録・カード・まとめを全部消すよ。元に戻せないけどいい？")) return;
+  state = blank();
+  save();
+  renderLog();
+  toast("全部消したよ");
+});
+
+// ================= タブ切り替え =================
+const RENDER = { home: renderHome, quiz: renderQuiz, notes: renderNotes, log: renderLog };
+function show(tab) {
+  if (tab !== "quiz") stopListen();
+  Object.keys(RENDER).forEach(k => $("tab-" + k).hidden = k !== tab);
+  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
+  RENDER[tab]();
+  window.scrollTo(0, 0);
+}
+$("tabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-tab]");
+  if (b) show(b.dataset.tab);
+});
+// ChatGPTから戻ってきたときに、時間などを最新にする（クイズ・聞き流しの途中はそのまま）
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState !== "visible" || quiz || listen) return;
+  state = load();
+  const on = document.querySelector("#tabs button.on");
+  RENDER[on.dataset.tab]();
+});
+renderHome();
+</script>
+</body>
+</html>
