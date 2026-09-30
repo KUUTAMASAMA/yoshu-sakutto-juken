@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版 使ってみた例（英語）</title>
+<meta name="description" content="英語の教科書1ページを、予習サクッと 受験版とChatGPTで予習し、復習クイズ・聞き流しまでやってみた実例">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="demo/demo.css?v=1">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="subj-nav" aria-label="教科">
+    <a href="demo.html">日本史</a>
+    <a href="demo-en.html" class="on">英語</a>
+    <a href="demo-ko.html">古文</a>
+  </nav>
+  <span class="tag">使ってみた例</span>
+  <h1>英語の予習と復習を、<br>実際にやってみた</h1>
+  <p>教科書の1ページを「予習サクッと 受験版」とChatGPTで予習して、復習クイズと聞き流しまで、順番に見せるよ。<br>アプリの画面は、<b>本物のアプリを実際に動かして撮ったもの</b>です。</p>
+  <div class="flow">
+    <span>🏠 <b>家で</b> 約10分</span>
+    <span>🚃 <b>電車で</b> 5分</span>
+    <span>⏰ <b>授業前</b> 5分</span>
+  </div>
+
+  <!-- 教科書 -->
+  <h2 style="margin-top:32px">今回予習する教科書のページ</h2>
+  <div class="textbook">
+    <div class="lesson">LESSON 4</div>
+    <h3>Why Sleep Matters for Learning</h3>
+    <p>Many students cut down on sleep to make more time for studying. However, research suggests that this may not be a wise choice. While we are asleep, the brain sorts through the information we have taken in during the day and stores the important parts as long-term memories. In one well-known type of experiment, people who slept after learning a list of words remembered more of them the next day than people who stayed awake. In other words, sleep is not wasted time; it is part of the learning process itself. If you want to remember what you study, it might be better to go to bed a little earlier tonight.</p>
+    <div class="note">※ このデモのために作った文章です（本物の教科書ではありません）</div>
+  </div>
+
+  <!-- ===== 家で ===== -->
+  <div class="scene-head"><span class="icon">🏠</span><div><b>家で予習する</b><span>約10分</span></div></div>
+
+  <div class="step" data-no="1">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>「今日やること」で英語を選んで「はじめる」</h2>
+    <p class="sub" style="margin:0">英語をタップするとリストに入る。「はじめる」でタイマーが動いて、やることが順番に出てくる。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/en-01-plan.jpg"><img src="demo/en-01-plan.jpg" alt="今日やることの画面。英語をタップしてリストに追加したところ" width="600" height="1200" loading="lazy"></a></div><figcaption>① 英語をタップ →「はじめる」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/en-02-steps.jpg"><img src="demo/en-02-steps.jpg" alt="英語の予習の手順が表示された画面" width="600" height="1200" loading="lazy"></a></div><figcaption>② 手順が出る</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ／画像を押すと大きく見られるよ</div>
+  </div>
+
+  <div class="step" data-no="2">
+    <div class="where">iPhoneのカメラ</div>
+    <h2>教科書の英文をコピーする</h2>
+    <p class="sub" style="margin:0">カメラを英文に向けて、右下の<b>黄色いマーク</b>を押す →「すべてを選択」→「コピー」。</p>
+    <div class="camera" aria-label="カメラの文字読み取りのイメージ">
+      <div class="menu"><span class="hi">コピー</span><span>すべてを選択</span><span>調べる</span></div>
+      <div class="view" style="padding-top:48px">
+        <mark>Many students cut down on sleep to make more time for studying. However, research suggests that this may not be a wise choice. While we are asleep, the brain sorts through…</mark>
+      </div>
+      <div class="bottom">
+        <small>文字読み取りマーク →</small>
+        <div class="livetext" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 10h8M8 14h5"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">カメラの画面のイメージ</div>
+    <div class="point">写真を送るより、<b>写真の回数（1日数回まで）を節約</b>できる。</div>
+  </div>
+
+  <div class="step" data-no="3">
+    <div class="where chat">ChatGPT</div>
+    <h2>プロジェクト「予習」で送る</h2>
+    <p class="sub" style="margin:0">「予習」の中で新しいチャット →「英語」と打って改行 → ペースト → 送信。</p>
+    <div class="gpt">
+      <div class="bar">予習 <small>›　新しいチャット</small></div>
+      <div class="body">
+        <div class="user">英語
+Many students cut down on sleep to make more time for studying. However, research suggests that this may not be a wise choice. …(ここに全文)</div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの画面のイメージ</div>
+  </div>
+
+  <div class="step" data-no="4">
+    <div class="where chat">ChatGPT</div>
+    <h2>ヒントが返ってくる</h2>
+    <p class="sub" style="margin:0">いきなり全訳は出ない。<b>ヒントを見て、まず自分で訳してみる。</b></p>
+    <div class="gpt">
+      <div class="body">
+        <div class="ai">
+          <h4>■ 1文ずつのヒント</h4>
+          <ol>
+            <li>Many students cut down on sleep to make more time for studying.<br><span class="hint">→ cut down on ～ の意味はカードで確認しよう。to make は「～するために」。</span></li>
+            <li>However, research suggests that this may not be a wise choice.<br><span class="hint">→ this が指しているのは、1文目のどの部分かな？</span></li>
+            <li>While we are asleep, the brain sorts through the information we have taken in during the day …<br><span class="hint">→ the information のあとに that が省略されているよ（今日の文法）。</span></li>
+          </ol>
+          <div class="more">（最後の文まで続く）</div>
+          <h4>■ 大事な文法：関係代名詞の省略</h4>
+          <p style="margin:0">the information <b>(that)</b> we have taken in のように、目的語になる関係代名詞は省略できる。<br><span class="hint">名詞のすぐあとに「主語＋動詞」が続いていたら、省略のサイン！</span></p>
+          <h4>■ 授業で聞かれそうな質問（答えはまだ出しません）</h4>
+          <p style="margin:0">Q1. What does the brain do while we are asleep?<br>Q2. What happened in the experiment?<br>Q3. What does the writer suggest at the end?</p>
+          <div class="fmt">
+            <b>【まとめ】</b><br>
+            ・睡眠を削って勉強するのは、かしこい選択とは言えないという話<br>
+            ・寝ている間に、脳はその日の情報を整理して長期記憶にする<br>
+            ・名詞のあとに「主語＋動詞」が続いたら、関係代名詞の省略<br>
+            <b>【カード】</b><br>
+            cut down on｜～を減らす<br>
+            suggest｜～を示す、示唆する<br>
+            <span class="more">（10個まで続く）</span>
+          </div>
+          <div class="tools" aria-label="返事の下のボタン">
+            <span class="copy" aria-label="コピー"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例（実際の返事は毎回少しずつちがうよ）</div>
+    <div class="point">最後の<b>【まとめ】【カード】</b>が、アプリに保存される部分。</div>
+  </div>
+
+  <div class="step" data-no="5">
+    <div class="where chat">ChatGPT</div>
+    <h2>自分で訳してから「答え合わせ」</h2>
+    <div class="gpt">
+      <div class="body">
+        <div class="user">答え合わせ</div>
+        <div class="ai">
+          <h4>■ 全文の訳</h4>
+          <p style="margin:0">多くの学生は、勉強の時間をふやすために睡眠を削っている。しかし、研究によれば、これはかしこい選択ではないかもしれない。寝ている間に、脳はその日に取り入れた情報を整理し、大事な部分を長期記憶としてたくわえる。…</p>
+          <h4>■ 質問の答え</h4>
+          <p style="margin:0">Q1. It sorts through the information we have taken in during the day and stores the important parts as long-term memories. …</p>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例</div>
+    <div class="point warm">この文章の最後の1文、そのまま自分にも言えるかも。<b>予習を早く終わらせて、早めに寝る</b>のも大事な勉強だよ。</div>
+  </div>
+
+  <div class="step" data-no="6">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>最初の返事をアプリに貼って保存</h2>
+    <p class="sub" style="margin:0">ステップ4の返事の<b>コピーボタン</b>を押す → アプリに戻って貼る →「カードとまとめを保存」→「記録する」。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/en-03-paste.jpg"><img src="demo/en-03-paste.jpg" alt="ChatGPTの返事を貼りつけた画面" width="600" height="1200" loading="lazy"></a></div><figcaption>① 貼りつけて「保存」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/en-04-saved.jpg"><img src="demo/en-04-saved.jpg" alt="新しいカード10枚、まとめ1件を保存したと表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② カード10枚とまとめが保存された</figcaption></figure>
+      <figure><div class="phone"><a href="demo/en-05-done.jpg"><img src="demo/en-05-done.jpg" alt="今日やることの英語に✓がつき、復習クイズ10枚が表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>③「記録する」で ✓</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ（3枚）</div>
+  </div>
+
+  <div class="total">この教科書1ページの予習にかかった時間<br><b>約10分</b><br><span class="sub">辞書で単語を引く時間が、ほぼゼロになるよ</span></div>
+
+  <!-- ===== 電車で ===== -->
+  <div class="scene-head"><span class="icon">🚃</span><div><b>電車で復習クイズ</b><span>5分</span></div></div>
+
+  <div class="step" data-no="7">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>英単語をクイズで確認</h2>
+    <p class="sub" style="margin:0">頭の中で意味を答えてから「答えを見る」→「覚えた ○」か「まだ ×」。○なら次は1日後、その次は3日後…と間があいていくよ。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/en-07-quiz-q.jpg"><img src="demo/en-07-quiz-q.jpg" alt="クイズの問題。cut down on と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>① 意味を思い出す</figcaption></figure>
+      <figure><div class="phone"><a href="demo/en-08-quiz-a.jpg"><img src="demo/en-08-quiz-a.jpg" alt="クイズの答え。〜を減らす と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② 答えを見て○か×</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ</div>
+  </div>
+
+  <div class="step" data-no="8">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>聞き流しなら、英語の発音で読んでくれる</h2>
+    <p class="sub" style="margin:0">英単語は<b>英語の発音</b>、意味は日本語で読み上げる。発音もいっしょに覚えられるよ。カードの右上の🔊でも聞ける。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/en-10-listen.jpg"><img src="demo/en-10-listen.jpg" alt="聞き流しの画面。cut down on が表示され、止めるボタンがある" width="600" height="1200" loading="lazy"></a></div><figcaption>🎧 聞き流し中</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- ===== 授業前 ===== -->
+  <div class="scene-head"><span class="icon">⏰</span><div><b>授業の前にまとめ</b><span>5分</span></div></div>
+  <div class="step" data-no="9">
+    <div class="where app">予習サクッと 受験版 ›「📝まとめ」</div>
+    <h2>ポイント3つを見返す</h2>
+    <p class="sub" style="margin:0">話の中身と、今日の文法が3行でわかる。当てられても落ち着いて答えられるよ。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/en-11-notes.jpg"><img src="demo/en-11-notes.jpg" alt="授業前のまとめ画面。英語のポイントが3つ並んでいる" width="600" height="1200" loading="lazy"></a></div><figcaption>英語のまとめ</figcaption></figure>
+    </div>
+  </div>
+
+  <div style="display:grid;gap:10px;margin-top:32px">
+    <a class="btn ghost" href="demo-ko.html">次は古文の例を見る →</a>
+    <a class="btn" href="./">アプリを開く</a>
+    <a class="btn ghost" href="guide.html#junbi">使い方ガイド（最初の準備はこちら）</a>
+  </div>
+  <footer>まずは明日の英語で、1回だけ試してみよう。</footer>
+</div>
+</body>
+</html>
