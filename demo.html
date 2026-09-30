@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版 使ってみた例（日本史）</title>
+<meta name="description" content="日本史の教科書1ページを、予習サクッと 受験版とChatGPTで予習し、復習クイズまでやってみた実例">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="demo/demo.css?v=1">
+</head>
+<body>
+<div class="wrap">
+
+  <span class="tag">使ってみた例</span>
+  <h1>日本史の予習と復習を、<br>実際にやってみた</h1>
+  <p>教科書の1ページを「予習サクッと 受験版」とChatGPTで予習して、次の日の復習まで、順番に見せるよ。<br>アプリの画面は、<b>本物のアプリを実際に動かして撮ったもの</b>です。</p>
+  <div class="flow">
+    <span>🏠 <b>家で</b> 約10分</span>
+    <span>🚃 <b>電車で</b> 5分</span>
+    <span>⏰ <b>授業前</b> 5分</span>
+  </div>
+
+  <!-- 教科書 -->
+  <h2 style="margin-top:32px">今回予習する教科書のページ</h2>
+  <div class="textbook jp">
+    <div class="lesson">第5章　武家政権の成立</div>
+    <h3>承久の乱</h3>
+    <p>源頼朝の死後、幕府では有力な御家人のあいだで争いが続き、北条時政・義時父子が<b>執権</b>として実権をにぎった。1219年に3代将軍源実朝が暗殺されると、源氏の将軍は途絶えた。</p>
+    <p>このころ京都では、<b>後鳥羽上皇</b>が院政をおこない、朝廷の勢力回復をはかっていた。上皇は将軍の断絶を幕府を倒す好機とみて、1221年、北条義時追討の命令を出して兵をあげた。これを<b>承久の乱</b>という。</p>
+    <p>東国の御家人の多くは、<b>北条政子</b>の呼びかけにこたえて結束し、幕府軍は京都を攻めて上皇側を破った。乱後、後鳥羽上皇は隠岐に流され、幕府は京都に<b>六波羅探題</b>を置いて朝廷を監視するとともに、西国の御家人を統轄させた。また、上皇方の所領を没収し、戦功のあった御家人を新たに地頭に任命した（<b>新補地頭</b>）。こうして幕府の支配は西国にもおよぶようになった。</p>
+    <div class="note">※ このデモのために作った文章です（本物の教科書ではありません）</div>
+  </div>
+
+  <!-- ===== 家で ===== -->
+  <div class="scene-head"><span class="icon">🏠</span><div><b>家で予習する</b><span>約10分</span></div></div>
+
+  <div class="step" data-no="1">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>「今日やること」で日本史を選んで「はじめる」</h2>
+    <p class="sub" style="margin:0">明日の授業で予習がいる教科をタップすると、リストに入る。「はじめる」でタイマーが動いて、やることが順番に出てくる。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/01-plan.jpg"><img src="demo/01-plan.jpg" alt="今日やることの画面。日本史をタップしてリストに追加したところ" width="600" height="1200" loading="lazy"></a></div><figcaption>① 日本史をタップ →「はじめる」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/02-steps.jpg"><img src="demo/02-steps.jpg" alt="日本史の予習の手順が表示された画面" width="600" height="1200" loading="lazy"></a></div><figcaption>② 手順が出る</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ／画像を押すと大きく見られるよ</div>
+  </div>
+
+  <div class="step" data-no="2">
+    <div class="where">iPhoneのカメラ</div>
+    <h2>教科書の本文をコピーする</h2>
+    <p class="sub" style="margin:0">カメラを本文に向けて、右下の<b>黄色いマーク</b>を押す →「すべてを選択」→「コピー」。日本史の教科書は横書きだから、きれいに読み取れるよ。</p>
+    <div class="camera" aria-label="カメラの文字読み取りのイメージ">
+      <div class="menu"><span class="hi">コピー</span><span>すべてを選択</span><span>調べる</span></div>
+      <div class="view jp" style="padding-top:48px">
+        <mark>源頼朝の死後、幕府では有力な御家人のあいだで争いが続き、北条時政・義時父子が執権として実権をにぎった。1219年に3代将軍源実朝が暗殺されると、源氏の将軍は途絶えた。このころ京都では…</mark>
+      </div>
+      <div class="bottom">
+        <small>文字読み取りマーク →</small>
+        <div class="livetext" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 10h8M8 14h5"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">カメラの画面のイメージ</div>
+    <div class="point">写真を送るより、<b>写真の回数（1日数回まで）を節約</b>できる。写真は数学などのために取っておこう。</div>
+  </div>
+
+  <div class="step" data-no="3">
+    <div class="where chat">ChatGPT</div>
+    <h2>プロジェクト「予習」で送る</h2>
+    <p class="sub" style="margin:0">「予習」の中で新しいチャット →「日本史」と打って改行 → ペースト → 送信。</p>
+    <div class="gpt">
+      <div class="bar">予習 <small>›　新しいチャット</small></div>
+      <div class="body">
+        <div class="user">日本史
+源頼朝の死後、幕府では有力な御家人のあいだで争いが続き、北条時政・義時父子が執権として実権をにぎった。…（ここに全文）</div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの画面のイメージ</div>
+  </div>
+
+  <div class="step" data-no="4">
+    <div class="where chat">ChatGPT</div>
+    <h2>「流れ」が返ってくる</h2>
+    <p class="sub" style="margin:0">語句をバラバラに覚えるんじゃなくて、<b>原因→出来事→結果</b>の1つの話として説明してくれる。</p>
+    <div class="gpt">
+      <div class="body">
+        <div class="ai">
+          <h4>■ この範囲の流れ</h4>
+          <div class="flow3">
+            <div><small>原因</small>源氏の将軍が3代で途絶え、後鳥羽上皇は「今なら幕府を倒して、朝廷の力を取りもどせる」と考えた。</div>
+            <div><small>出来事</small>1221年、後鳥羽上皇が北条義時を討つ命令を出して兵をあげた（承久の乱）。北条政子が御家人たちに頼朝の恩を説いて団結させ、幕府軍が勝った。</div>
+            <div><small>結果</small>上皇たちは流され、幕府は京都に六波羅探題を置いて朝廷を見張った。上皇側の土地に新しく地頭を置き（新補地頭）、幕府の力が西国にも広がった。</div>
+          </div>
+          <h4>■ 年号の語呂合わせ</h4>
+          <p style="margin:0">1221年 承久の乱 →「ひとにふい（1221）うち、承久の乱」</p>
+          <div class="fmt">
+            <b>【まとめ】</b><br>
+            ・原因：源氏の将軍が途絶え、後鳥羽上皇が幕府を倒すチャンスだと考えた<br>
+            ・出来事：1221年、承久の乱。北条政子の説得で御家人が団結し、幕府軍が勝った<br>
+            ・結果：六波羅探題を置いて朝廷を見張り、幕府の力が西国にも広がった<br>
+            <b>【カード】</b><br>
+            1221年、後鳥羽上皇が幕府を倒そうと兵をあげた戦いは？｜承久の乱<br>
+            承久の乱で、幕府を倒すために兵をあげた上皇は？｜後鳥羽上皇<br>
+            <span class="more">（8問まで続く）</span>
+          </div>
+          <div class="tools" aria-label="返事の下のボタン">
+            <span class="copy" aria-label="コピー"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例（実際の返事は毎回少しずつちがうよ）</div>
+    <div class="point">最後の<b>【まとめ】【カード】</b>が、アプリに保存される部分。カードは<b>一問一答</b>になっているよ。</div>
+  </div>
+
+  <div class="step" data-no="5">
+    <div class="where chat">ChatGPT</div>
+    <h2>わからない語句は、そのまま聞く</h2>
+    <div class="gpt">
+      <div class="body">
+        <div class="user">新補地頭ってなに？</div>
+        <div class="ai">
+          <p style="margin:0">承久の乱のあと、上皇側から取り上げた土地に、幕府が新しく任命した地頭のことだよ。それまでの地頭とちがって、取り分（収入）の決まりがはっきり定められたんだ。</p>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例</div>
+    <div class="point warm">流れを<b>ノートに3行で書く</b>のがおすすめ。年号や人名は、<b>教科書でも確かめて</b>ね（ChatGPTもたまにまちがえる）。</div>
+  </div>
+
+  <div class="step" data-no="6">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>最初の返事をアプリに貼って保存</h2>
+    <p class="sub" style="margin:0">ステップ4の返事の<b>コピーボタン</b>を押す → アプリに戻って貼る →「カードとまとめを保存」。カードはそのまま<b>今日の復習クイズ</b>に入る。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/03-paste.jpg"><img src="demo/03-paste.jpg" alt="ChatGPTの返事を貼りつけた画面" width="600" height="1200" loading="lazy"></a></div><figcaption>① 貼りつけて「保存」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/04-saved.jpg"><img src="demo/04-saved.jpg" alt="新しいカード8枚、まとめ1件を保存したと表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② カード8枚とまとめが保存された</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ／画像を押すと大きく見られるよ</div>
+  </div>
+
+  <div class="step" data-no="7">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>「記録する」で ✓ がつく</h2>
+    <p class="sub" style="margin:0">「今日やること」の日本史に ✓。かわりに「復習クイズ 8枚」が出てくる。下の🔁の数字も今日の復習の枚数だよ。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/05-done.jpg"><img src="demo/05-done.jpg" alt="今日やることの日本史に✓がつき、復習クイズ8枚が表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>予習：日本史 ✓</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="total">この教科書1ページの予習にかかった時間<br><b>約10分</b><br><span class="sub">流れがわかるから、語句がバラバラにならない</span></div>
+
+  <!-- ===== 電車で ===== -->
+  <div class="scene-head"><span class="icon">🚃</span><div><b>電車で復習クイズ</b><span>5分</span></div></div>
+
+  <div class="step" data-no="8">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>一問一答で復習する</h2>
+    <p class="sub" style="margin:0">頭の中で答えてから「答えを見る」→「覚えた ○」か「まだ ×」。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/06-quiz-start.jpg"><img src="demo/06-quiz-start.jpg" alt="復習クイズの画面。今日の復習8枚と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>① 今日の復習は8枚</figcaption></figure>
+      <figure><div class="phone"><a href="demo/07-quiz-q.jpg"><img src="demo/07-quiz-q.jpg" alt="一問一答の問題が表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② 問題を見て答えを思い出す</figcaption></figure>
+      <figure><div class="phone"><a href="demo/08-quiz-a.jpg"><img src="demo/08-quiz-a.jpg" alt="答えが表示され、○なら次は1日後、×なら明日もう一度、と書かれている" width="600" height="1200" loading="lazy"></a></div><figcaption>③ ○か×を押す</figcaption></figure>
+      <figure><div class="phone"><a href="demo/09-quiz-end.jpg"><img src="demo/09-quiz-end.jpg" alt="結果の画面。○8/9と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>④ ×の1枚は最後にもう1回出た</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ（4枚）</div>
+  </div>
+
+  <div class="step" data-no="9">
+    <div class="where app">しくみ</div>
+    <h2>忘れかけたころに、もう一度出てくる</h2>
+    <div class="card-box">
+      <div class="timeline" aria-label="復習のタイミング：今日、1日後、3日後、1週間後、2週間後、1か月後">
+        <div class="pt"><div class="dot">覚</div><span>今日</span></div>
+        <div class="pt"><div class="dot">1</div><span>1日後</span></div>
+        <div class="pt"><div class="dot">2</div><span>3日後</span></div>
+        <div class="pt"><div class="dot">3</div><span>1週間後</span></div>
+        <div class="pt"><div class="dot">4</div><span>2週間後</span></div>
+        <div class="pt"><div class="dot">5</div><span>1か月後</span></div>
+      </div>
+      <p class="sub" style="margin:8px 0 0">○を押すたびに、次に出てくるまでの日にちがのびていく。×なら明日もう一度。<b>1回で覚えなくていい</b>から、気楽にいこう。</p>
+    </div>
+  </div>
+
+  <div class="step" data-no="10">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>目がつかれたら「聞き流し」</h2>
+    <p class="sub" style="margin:0">スマホが問題を読み上げて、少し待ってから答えを読む。その間に頭の中で答えてみよう。イヤホンで、画面はつけたままでね。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/10-listen.jpg"><img src="demo/10-listen.jpg" alt="聞き流しの画面。問題が大きく表示され、止めるボタンがある" width="600" height="1200" loading="lazy"></a></div><figcaption>🎧 聞き流し中</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- ===== 授業前 ===== -->
+  <div class="scene-head"><span class="icon">⏰</span><div><b>授業の前にまとめ</b><span>5分</span></div></div>
+  <div class="step" data-no="11">
+    <div class="where app">予習サクッと 受験版 ›「📝まとめ」</div>
+    <h2>原因→出来事→結果を見返す</h2>
+    <p class="sub" style="margin:0">3行で流れがわかる。授業の話がスッと入ってくるし、当てられても答えられる。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/11-notes.jpg"><img src="demo/11-notes.jpg" alt="授業前のまとめ画面。原因、出来事、結果の3行で並んでいる" width="600" height="1200" loading="lazy"></a></div><figcaption>日本史のまとめ</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- ===== 続けると ===== -->
+  <div class="scene-head"><span class="icon">📊</span><div><b>1週間続けると…</b><span>記録画面</span></div></div>
+  <div class="step" data-no="12">
+    <div class="where app">予習サクッと 受験版 ›「📊記録」</div>
+    <h2>予習時間と復習の枚数が見える</h2>
+    <p class="sub" style="margin:0">点線が目標の30分。慣れるほど予習の棒が短くなって、復習の枚数がふえていくのが目標だよ。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/12-log-week.jpg"><img src="demo/12-log-week.jpg" alt="記録画面。1週間分の予習時間の棒グラフが、だんだん短くなっている。7日間の復習は110枚" width="600" height="1200" loading="lazy"></a></div><figcaption>見本として1週間分の記録を入れた例</figcaption></figure>
+    </div>
+  </div>
+
+  <div style="display:grid;gap:10px;margin-top:32px">
+    <a class="btn" href="./">アプリを開く</a>
+    <a class="btn ghost" href="guide.html#junbi">使い方ガイド（最初の準備はこちら）</a>
+  </div>
+  <footer>まずは明日の日本史で、1回だけ試してみよう。</footer>
+</div>
+</body>
+</html>
