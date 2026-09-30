@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版 使ってみた例（漢文）</title>
+<meta name="description" content="漢文（論語・学ぶことについて）を、予習サクッと 受験版とChatGPTで予習し、復習クイズまでやってみた実例">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="demo/demo.css?v=2">
+<style>
+  .tate-body.kanbun p + p { margin-right: 1.1em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="subj-nav" aria-label="教科">
+    <a href="demo.html">日本史</a>
+    <a href="demo-en.html">英語</a>
+    <a href="demo-ge.html">現代文</a>
+    <a href="demo-ko.html">古文</a>
+    <a href="demo-kan.html" class="on">漢文</a>
+    <a href="demo-ma.html">数学</a>
+    <a href="demo-sc.html">理科</a>
+  </nav>
+  <span class="tag">使ってみた例</span>
+  <h1>漢文の予習と復習を、<br>実際にやってみた</h1>
+  <p>教科書の1ページを「予習サクッと 受験版」とChatGPTで予習して、復習クイズまで、順番に見せるよ。<br>アプリの画面は、<b>本物のアプリを実際に動かして撮ったもの</b>です。</p>
+  <div class="flow">
+    <span>🏠 <b>家で</b> 約10分</span>
+    <span>🚃 <b>電車で</b> 5分</span>
+    <span>⏰ <b>授業前</b> 5分</span>
+  </div>
+
+  <!-- 教科書 -->
+  <h2 style="margin-top:32px">今回予習する教科書のページ</h2>
+  <div class="textbook tate">
+    <div class="tate-body kanbun" tabindex="0" aria-label="縦書きの本文（返り点つき）">
+      <h3>学ぶということ</h3>
+      <div class="by">『論語』</div>
+      <p>子曰、「学而時習<span class="kt">レ</span>之、不<span class="kt">二</span>亦説<span class="kt">一</span>乎。有<span class="kt">レ</span>朋自<span class="kt">二</span>遠方<span class="kt">一</span>来、不<span class="kt">二</span>亦楽<span class="kt">一</span>乎。人不<span class="kt">レ</span>知而不<span class="kt">レ</span>慍、不<span class="kt">二</span>亦君子<span class="kt">一</span>乎。」</p>
+      <p>子曰、「温<span class="kt">レ</span>故而知<span class="kt">レ</span>新、可<span class="kt">二</span>以為<span class="kt">一レ</span>師矣。」</p>
+      <p>子曰、「学而不<span class="kt">レ</span>思則罔、思而不<span class="kt">レ</span>学則殆。」</p>
+      <p>子曰、「知<span class="kt">レ</span>之者不<span class="kt">レ</span>如<span class="kt">二</span>好<span class="kt">レ</span>之者<span class="kt">一</span>、好<span class="kt">レ</span>之者不<span class="kt">レ</span>如<span class="kt">二</span>楽<span class="kt">レ</span>之者<span class="kt">一</span>。」</p>
+    </div>
+    <div class="scroll-hint">小さい字（レ・一・二）が返り点。送りがなは省いています。左へスクロールすると続きが読めるよ</div>
+    <div class="note">※『論語』学而・為政・雍也より。昔の作品なので、本文をそのまま載せています</div>
+  </div>
+
+  <!-- ===== 家で ===== -->
+  <div class="scene-head"><span class="icon">🏠</span><div><b>家で予習する</b><span>約10分</span></div></div>
+
+  <div class="step" data-no="1">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>「今日やること」で古文・漢文を選んで「はじめる」</h2>
+    <p class="sub" style="margin:0">漢文も「古文・漢文」のボタン。タップするとリストに入って、「はじめる」でタイマーが動くよ。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/kan-01-plan.jpg"><img src="demo/kan-01-plan.jpg" alt="今日やることの画面。古文・漢文をタップしてリストに追加したところ" width="600" height="1200" loading="lazy"></a></div><figcaption>① 古文・漢文をタップ →「はじめる」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/kan-02-steps.jpg"><img src="demo/kan-02-steps.jpg" alt="古文・漢文の予習の手順が表示された画面" width="600" height="1200" loading="lazy"></a></div><figcaption>② 手順が出る</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ／画像を押すと大きく見られるよ</div>
+  </div>
+
+  <div class="step" data-no="2">
+    <div class="where chat">ChatGPT</div>
+    <h2>「予習」で、教科書の写真を送る</h2>
+    <p class="sub" style="margin:0">「予習」の中で新しいチャット →<b>「漢文」</b>と打つ →「＋」→「カメラ」で本文のページを撮る → 送信。</p>
+    <div class="gpt">
+      <div class="bar">予習 <small>›　新しいチャット</small></div>
+      <div class="body">
+        <div class="user"><span class="photo-thumb tate"><span>📷 教科書の写真</span></span>漢文</div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの画面のイメージ</div>
+    <div class="point">返り点や送りがなまで読み取れるように、<b>ページをまっすぐ、明るいところで撮る</b>のがコツ。</div>
+  </div>
+
+  <div class="step" data-no="3">
+    <div class="where chat">ChatGPT</div>
+    <h2>ヒントが返ってくる</h2>
+    <p class="sub" style="margin:0">大事な漢字と句法、<b>1章ずつの書き下し・訳のヒント</b>。全文の訳はまだ出ない。</p>
+    <div class="gpt">
+      <div class="body">
+        <div class="ai">
+          <h4>■ 大事な漢字・句法</h4>
+          <ul>
+            <li>説（よろこ）ぶ：うれしい（「悦」と同じ）</li>
+            <li>慍（いきどほ）る：不満に思う、腹を立てる</li>
+            <li>罔（くら）し：はっきりしない、道理がわからない</li>
+          </ul>
+          <div class="more">（6個まで続く）</div>
+          <h4>■ 大事な文法：「不亦〜乎」と「不如〜」</h4>
+          <p style="margin:0">・不亦〜乎（また〜ずや）＝「なんと〜ではないか」（詠嘆）<br>・不如〜（〜にしかず）＝「〜に及ばない」（比較）</p>
+          <h4>■ 1章ずつ書き下し・訳のヒント</h4>
+          <ol>
+            <li>学而時習之、不亦説乎。<br><span class="hint">→「時に」は「機会があるごとに」。「習ふ」は「くり返し復習する」という意味だよ。</span></li>
+            <li>温故而知新、可以為師矣。<br><span class="hint">→ 四字熟語になっているよ。どの熟語かな？</span></li>
+            <li>知之者不如好之者、好之者不如楽之者。<br><span class="hint">→「不如」は「〜に及ばない」。いちばん上なのは、どの人かな？</span></li>
+          </ol>
+          <div class="fmt">
+            <b>【まとめ】</b><br>
+            ・学んだことをくり返し復習するのは、うれしいこと（学而時習之）<br>
+            ・古いことを学び直して、新しい発見をする＝温故知新<br>
+            ・不亦〜乎＝なんと〜ではないか（詠嘆）、不如〜＝〜に及ばない（比較）<br>
+            <b>【カード】</b><br>
+            学而時習之｜学んで、機会があるごとに復習する<br>
+            不亦〜乎｜なんと〜ではないか（詠嘆）<br>
+            <span class="more">（10個まで続く）</span>
+          </div>
+          <div class="tools" aria-label="返事の下のボタン">
+            <span class="copy" aria-label="コピー"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例（実際の返事は毎回少しずつちがうよ）</div>
+    <div class="point">最後の<b>【まとめ】【カード】</b>が、アプリに保存される部分。</div>
+  </div>
+
+  <div class="step" data-no="4">
+    <div class="where chat">ChatGPT</div>
+    <h2>自分で書き下してから「答え合わせ」</h2>
+    <div class="gpt">
+      <div class="body">
+        <div class="user">答え合わせ</div>
+        <div class="ai">
+          <h4>■ 書き下し文（1章目）</h4>
+          <p style="margin:0">子曰はく、「学びて時に之を習ふ、亦説ばしからずや。朋有り遠方より来たる、亦楽しからずや。人知らずして慍みず、亦君子ならずや。」と。</p>
+          <h4>■ 現代語訳</h4>
+          <p style="margin:0">先生がおっしゃった。「学んだことを、機会があるごとにくり返し復習する。なんとうれしいことではないか。友が遠くからたずねて来る。なんと楽しいことではないか。人が自分を認めてくれなくても不満に思わない。なんと君子らしいことではないか。」 …</p>
+          <h4>■ 4章目のポイント</h4>
+          <p style="margin:0">知っている人 ＜ 好きな人 ＜ <b>楽しんでいる人</b>。楽しんで学ぶ人がいちばん、ということだよ。</p>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例</div>
+    <div class="point warm">「学びて時に之を習ふ」は、まさに<b>このアプリの復習クイズの考え方</b>。2500年前から、くり返し復習するのが大事って言われてたんだね。</div>
+  </div>
+
+  <div class="step" data-no="5">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>最初の返事をアプリに貼って保存</h2>
+    <p class="sub" style="margin:0">ステップ3の返事の<b>コピーボタン</b>を押す → アプリに戻って貼る →「カードとまとめを保存」→「記録する」。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/kan-03-paste.jpg"><img src="demo/kan-03-paste.jpg" alt="ChatGPTの返事を貼りつけた画面" width="600" height="1200" loading="lazy"></a></div><figcaption>① 貼りつけて「保存」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/kan-04-saved.jpg"><img src="demo/kan-04-saved.jpg" alt="新しいカード10枚、まとめ1件を保存したと表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② カード10枚とまとめが保存された</figcaption></figure>
+      <figure><div class="phone"><a href="demo/kan-05-done.jpg"><img src="demo/kan-05-done.jpg" alt="今日やることの古文・漢文に✓がつき、復習クイズ10枚が表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>③「記録する」で ✓</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ（3枚）</div>
+  </div>
+
+  <div class="total">この教科書1ページの予習にかかった時間<br><b>約10分</b><br><span class="sub">漢和辞典を引く時間が、ほぼゼロになるよ</span></div>
+
+  <!-- ===== 電車で ===== -->
+  <div class="scene-head"><span class="icon">🚃</span><div><b>電車で復習クイズ</b><span>5分</span></div></div>
+  <div class="step" data-no="6">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>句法と漢字の意味をクイズで覚える</h2>
+    <p class="sub" style="margin:0">頭の中で答えてから「答えを見る」→「覚えた ○」か「まだ ×」。「不如〜」のような句法は、ほかの文章でも何度も出てくるよ。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/kan-07-quiz-q.jpg"><img src="demo/kan-07-quiz-q.jpg" alt="クイズの問題。学而時習之 と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>① 意味を思い出す</figcaption></figure>
+      <figure><div class="phone"><a href="demo/kan-08-quiz-a.jpg"><img src="demo/kan-08-quiz-a.jpg" alt="クイズの答え。学んで、機会があるごとに復習する と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② 答えを見て○か×</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ</div>
+  </div>
+
+  <!-- ===== 授業前 ===== -->
+  <div class="scene-head"><span class="icon">⏰</span><div><b>授業の前にまとめ</b><span>5分</span></div></div>
+  <div class="step" data-no="7">
+    <div class="where app">予習サクッと 受験版 ›「📝まとめ」</div>
+    <h2>ポイント3つを見返す</h2>
+    <p class="sub" style="margin:0">内容と句法が3行でわかる。当てられても落ち着いて答えられるよ。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/kan-11-notes.jpg"><img src="demo/kan-11-notes.jpg" alt="授業前のまとめ画面。漢文のポイントが3つ並んでいる" width="600" height="1200" loading="lazy"></a></div><figcaption>漢文のまとめ</figcaption></figure>
+    </div>
+  </div>
+
+  <div style="display:grid;gap:10px;margin-top:32px">
+    <a class="btn ghost" href="demo-ma.html">次は数学の例を見る →</a>
+    <a class="btn" href="./">アプリを開く</a>
+    <a class="btn ghost" href="guide.html#junbi">使い方ガイド（最初の準備はこちら）</a>
+  </div>
+  <footer>まずは次の漢文の授業で、1回だけ試してみよう。</footer>
+</div>
+</body>
+</html>

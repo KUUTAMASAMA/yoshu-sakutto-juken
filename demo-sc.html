@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#3a5a8c">
+<title>予習サクッと 受験版 使ってみた例（理科）</title>
+<meta name="description" content="理科（生物基礎・免疫のしくみ）の教科書1ページを、予習サクッと 受験版とChatGPTで予習し、復習クイズまでやってみた実例">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="demo/demo.css?v=2">
+<style>
+  .diagram { display: grid; gap: 6px; font-size: .84rem; margin: 6px 0; }
+  .diagram .node { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; }
+  .diagram .node b { color: var(--accent); }
+  .diagram .arrow { text-align: center; color: var(--sub); line-height: 1; }
+  .diagram .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .diagram .tag2 { display: block; font-size: .72rem; color: var(--warm); font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="subj-nav" aria-label="教科">
+    <a href="demo.html">日本史</a>
+    <a href="demo-en.html">英語</a>
+    <a href="demo-ge.html">現代文</a>
+    <a href="demo-ko.html">古文</a>
+    <a href="demo-kan.html">漢文</a>
+    <a href="demo-ma.html">数学</a>
+    <a href="demo-sc.html" class="on">理科</a>
+  </nav>
+  <span class="tag">使ってみた例</span>
+  <h1>理科の予習と復習を、<br>実際にやってみた</h1>
+  <p>教科書の1ページを「予習サクッと 受験版」とChatGPTで予習して、復習クイズまで、順番に見せるよ。<br>アプリの画面は、<b>本物のアプリを実際に動かして撮ったもの</b>です。</p>
+  <div class="flow">
+    <span>🏠 <b>家で</b> 約10分</span>
+    <span>🚃 <b>電車で</b> 5分</span>
+    <span>⏰ <b>授業前</b> 5分</span>
+  </div>
+
+  <!-- 教科書 -->
+  <h2 style="margin-top:32px">今回予習する教科書のページ</h2>
+  <div class="textbook jp">
+    <div class="lesson">生物基礎　第3章　体内環境の維持</div>
+    <h3>免疫のしくみ</h3>
+    <p>体内に侵入した病原体などの異物を排除するしくみを<b>免疫</b>という。免疫には、生まれつき備わっている<b>自然免疫</b>と、侵入した異物に応じて後天的に獲得される<b>獲得免疫</b>（適応免疫）がある。</p>
+    <p>自然免疫では、皮膚や粘膜が異物の侵入を防ぐとともに、侵入した異物を好中球やマクロファージ、樹状細胞などが取りこんで分解する。この働きを<b>食作用</b>という。</p>
+    <p>獲得免疫では、異物を取りこんだ樹状細胞が、その情報をヘルパーT細胞に伝える（<b>抗原提示</b>）。ヘルパーT細胞は、B細胞やキラーT細胞を活性化する。B細胞は抗体産生細胞に分化して抗体をつくり、抗体が抗原と結合して異物を排除する（<b>体液性免疫</b>）。キラーT細胞は、病原体に感染した細胞を直接攻撃する（<b>細胞性免疫</b>）。</p>
+    <p>また、活性化したT細胞やB細胞の一部は<b>記憶細胞</b>として体内に残る。同じ抗原が再び侵入すると、記憶細胞がすばやく反応し、1回目より速く強い反応が起こる。これを<b>二次応答</b>といい、予防接種はこのしくみを利用している。</p>
+    <div class="note">※ このデモのために作った文章です（本物の教科書ではありません）</div>
+  </div>
+
+  <!-- ===== 家で ===== -->
+  <div class="scene-head"><span class="icon">🏠</span><div><b>家で予習する</b><span>約10分</span></div></div>
+
+  <div class="step" data-no="1">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>「今日やること」で理科を選んで「はじめる」</h2>
+    <p class="sub" style="margin:0">タップするとリストに入る。「はじめる」でタイマーが動いて、やることが順番に出てくる。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/sc-01-plan.jpg"><img src="demo/sc-01-plan.jpg" alt="今日やることの画面。理科をタップしてリストに追加したところ" width="600" height="1200" loading="lazy"></a></div><figcaption>① 理科をタップ →「はじめる」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/sc-02-steps.jpg"><img src="demo/sc-02-steps.jpg" alt="理科の予習の手順が表示された画面" width="600" height="1200" loading="lazy"></a></div><figcaption>② 手順が出る</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ／画像を押すと大きく見られるよ</div>
+  </div>
+
+  <div class="step" data-no="2">
+    <div class="where chat">ChatGPT</div>
+    <h2>「予習」で、教科書の写真を送る</h2>
+    <p class="sub" style="margin:0">「予習」の中で新しいチャット →「理科」と打つ →「＋」→「カメラ」で本文のページを撮る → 送信。</p>
+    <div class="gpt">
+      <div class="bar">予習 <small>›　新しいチャット</small></div>
+      <div class="body">
+        <div class="user"><span class="photo-thumb"><span>📷 教科書の写真</span></span>理科</div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの画面のイメージ</div>
+    <div class="point">理科は図や表が多いので、<b>写真で送るのがおすすめ</b>。図の中の言葉も読み取ってくれるよ。</div>
+  </div>
+
+  <div class="step" data-no="3">
+    <div class="where chat">ChatGPT</div>
+    <h2>ヒントが返ってくる</h2>
+    <p class="sub" style="margin:0">習うことの説明と、大事な用語。最後に<b>確認の質問</b>が出る（答えはまだ出ない）。</p>
+    <div class="gpt">
+      <div class="body">
+        <div class="ai">
+          <h4>■ このページで習うこと（3行で）</h4>
+          <ul>
+            <li>免疫は、体に入った異物（病原体など）を追い出すしくみ。</li>
+            <li>生まれつきある「自然免疫」と、あとから身につく「獲得免疫」の2段がまえ。</li>
+            <li>獲得免疫は、一度戦った相手を覚えていて、2回目はすばやく強く反応できる。</li>
+          </ul>
+          <h4>■ 大事な用語</h4>
+          <ul>
+            <li>食作用：好中球やマクロファージ、樹状細胞が異物を取りこんで分解する働き</li>
+            <li>抗原提示：樹状細胞が、取りこんだ異物の情報をヘルパーT細胞に伝えること</li>
+          </ul>
+          <div class="more">（4個まで続く）</div>
+          <h4>■ 確認のヒント</h4>
+          <p style="margin:0">「ヘルパーT細胞」は、どの細胞から情報を受け取って、どの細胞を活性化するかな？ 本文から探してみよう。</p>
+          <div class="fmt">
+            <b>【まとめ】</b><br>
+            ・免疫には、生まれつきの自然免疫と、あとから得る獲得免疫がある<br>
+            ・獲得免疫：樹状細胞→ヘルパーT細胞→B細胞（抗体）とキラーT細胞（攻撃）<br>
+            ・記憶細胞のおかげで二次応答が起こる（予防接種はこのしくみを利用）<br>
+            <b>【カード】</b><br>
+            免疫｜体内に入った異物を追い出すしくみ<br>
+            自然免疫｜生まれつき備わっている免疫（食作用など）<br>
+            <span class="more">（10個まで続く）</span>
+          </div>
+          <div class="tools" aria-label="返事の下のボタン">
+            <span class="copy" aria-label="コピー"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例（実際の返事は毎回少しずつちがうよ）</div>
+    <div class="point">最後の<b>【まとめ】【カード】</b>が、アプリに保存される部分。用語がカードになるよ。</div>
+  </div>
+
+  <div class="step" data-no="4">
+    <div class="where chat">ChatGPT</div>
+    <h2>「図にして」で、流れを見える化</h2>
+    <p class="sub" style="margin:0">細胞の名前がたくさん出てきて混乱したら、<b>「流れを図にして」</b>と送るだけ。</p>
+    <div class="gpt">
+      <div class="body">
+        <div class="user">流れを図にして</div>
+        <div class="ai">
+          <div class="diagram" aria-label="免疫の流れの図">
+            <div class="node">🦠 異物（病原体）が入ってくる</div>
+            <div class="arrow">↓</div>
+            <div class="node"><span class="tag2">自然免疫</span>好中球・マクロファージ・<b>樹状細胞</b>が食べる（食作用）</div>
+            <div class="arrow">↓ 樹状細胞が情報を伝える（抗原提示）</div>
+            <div class="node"><b>ヘルパーT細胞</b></div>
+            <div class="arrow">↓ 活性化</div>
+            <div class="two">
+              <div class="node"><span class="tag2">体液性免疫</span><b>B細胞</b> → 抗体をつくる → 抗体が異物とくっつく</div>
+              <div class="node"><span class="tag2">細胞性免疫</span><b>キラーT細胞</b> → 感染した細胞をこうげき</div>
+            </div>
+            <div class="arrow">↓ 一部が残る</div>
+            <div class="node"><b>記憶細胞</b> → 2回目はすばやく強く（二次応答）</div>
+          </div>
+        </div>
+        <div class="user">答え合わせ</div>
+        <div class="ai">
+          <p style="margin:0">ヘルパーT細胞は、<b>樹状細胞</b>から情報を受け取り（抗原提示）、<b>B細胞とキラーT細胞</b>を活性化するよ。正解できたかな？</p>
+        </div>
+      </div>
+    </div>
+    <div class="caption-img">ChatGPTの返事の例</div>
+    <div class="point warm">図は<b>自分のノートに写す</b>と、もっと覚えやすい。図や音声で覚えるのが得意なら、ぜひ使ってみて。</div>
+  </div>
+
+  <div class="step" data-no="5">
+    <div class="where app">予習サクッと 受験版</div>
+    <h2>最初の返事をアプリに貼って保存</h2>
+    <p class="sub" style="margin:0">ステップ3の返事の<b>コピーボタン</b>を押す → アプリに戻って貼る →「カードとまとめを保存」→「記録する」。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/sc-03-paste.jpg"><img src="demo/sc-03-paste.jpg" alt="ChatGPTの返事を貼りつけた画面" width="600" height="1200" loading="lazy"></a></div><figcaption>① 貼りつけて「保存」</figcaption></figure>
+      <figure><div class="phone"><a href="demo/sc-04-saved.jpg"><img src="demo/sc-04-saved.jpg" alt="新しいカード10枚、まとめ1件を保存したと表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② カード10枚とまとめが保存された</figcaption></figure>
+      <figure><div class="phone"><a href="demo/sc-05-done.jpg"><img src="demo/sc-05-done.jpg" alt="今日やることの理科に✓がつき、復習クイズ10枚が表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>③「記録する」で ✓</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ（3枚）</div>
+  </div>
+
+  <div class="total">この教科書1ページの予習にかかった時間<br><b>約10分</b><br><span class="sub">用語の意味を調べる時間が、ほぼゼロになるよ</span></div>
+
+  <!-- ===== 電車で ===== -->
+  <div class="scene-head"><span class="icon">🚃</span><div><b>電車で復習クイズ</b><span>5分</span></div></div>
+  <div class="step" data-no="6">
+    <div class="where app">予習サクッと 受験版 ›「🔁復習」</div>
+    <h2>用語をクイズで覚える</h2>
+    <p class="sub" style="margin:0">頭の中で答えてから「答えを見る」→「覚えた ○」か「まだ ×」。理科の定期テストは用語が多いから、クイズが効くよ。</p>
+    <div class="shots">
+      <figure><div class="phone"><a href="demo/sc-07-quiz-q.jpg"><img src="demo/sc-07-quiz-q.jpg" alt="クイズの問題。免疫 と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>① 意味を思い出す</figcaption></figure>
+      <figure><div class="phone"><a href="demo/sc-08-quiz-a.jpg"><img src="demo/sc-08-quiz-a.jpg" alt="クイズの答え。体内に入った異物を追い出すしくみ と表示されている" width="600" height="1200" loading="lazy"></a></div><figcaption>② 答えを見て○か×</figcaption></figure>
+    </div>
+    <div class="swipe">← 横にスワイプできるよ</div>
+  </div>
+
+  <!-- ===== 授業前 ===== -->
+  <div class="scene-head"><span class="icon">⏰</span><div><b>授業の前にまとめ</b><span>5分</span></div></div>
+  <div class="step" data-no="7">
+    <div class="where app">予習サクッと 受験版 ›「📝まとめ」</div>
+    <h2>ポイント3つを見返す</h2>
+    <p class="sub" style="margin:0">「樹状細胞→ヘルパーT細胞→B細胞とキラーT細胞」の流れがわかれば、授業の図もすぐ読める。</p>
+    <div class="shots one">
+      <figure><div class="phone"><a href="demo/sc-11-notes.jpg"><img src="demo/sc-11-notes.jpg" alt="授業前のまとめ画面。理科のポイントが3つ並んでいる" width="600" height="1200" loading="lazy"></a></div><figcaption>理科のまとめ</figcaption></figure>
+    </div>
+  </div>
+
+  <div style="display:grid;gap:10px;margin-top:32px">
+    <a class="btn ghost" href="demo.html">日本史の例にもどる</a>
+    <a class="btn" href="./">アプリを開く</a>
+    <a class="btn ghost" href="guide.html#junbi">使い方ガイド（最初の準備はこちら）</a>
+  </div>
+  <footer>まずは次の理科の授業で、1回だけ試してみよう。</footer>
+</div>
+</body>
+</html>

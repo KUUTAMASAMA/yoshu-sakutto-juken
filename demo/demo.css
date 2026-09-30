@@ -202,7 +202,7 @@ figcaption { font-size: .82rem; color: var(--sub); text-align: center; margin-to
 footer { margin-top: 40px; text-align: center; color: var(--sub); font-size: .85rem; }
 
 /* 教科の切りかえ */
-.subj-nav { display: flex; gap: 6px; overflow-x: auto; margin: 0 0 14px; padding-bottom: 2px; scrollbar-width: none; }
+.subj-nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; }
 .subj-nav::-webkit-scrollbar { display: none; }
 .subj-nav a {
   flex: none; text-decoration: none; font-size: .85rem; font-weight: 700;
